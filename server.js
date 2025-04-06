@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -18,7 +20,7 @@ app.use(bodyParser.json());
 
 // Configuración de la sesion, necesaria para que Passport funcione.
 app.use(session({
-  secret: 'cobija',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));

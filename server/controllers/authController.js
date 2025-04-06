@@ -3,8 +3,10 @@ const path = require('path');
 const fs = require('fs');
 const db = require('../database/database.js');
 const multer = require('multer');
+const passport = require('passport');
+const { error } = require('console');
 
-// Asegúrate de que la carpeta de uploads exista
+//carpeta de uploads 
 const uploadDir = path.join(__dirname, '../../uploads/avatars');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
@@ -34,6 +36,7 @@ const upload = multer({
         cb(null, true);
     }
 }).single('avatar');
+
 
 // Función para manejar el registro de usuarios
 exports.register = (req, res) => {
@@ -130,7 +133,7 @@ exports.register = (req, res) => {
     });
 };
 
-// Función para manejar el inicio de sesión
+// Función para manejar el inicio de sesión con email y contraseña
 exports.login = (req, res) => {
     try {
         const { email, password } = req.body;
@@ -184,6 +187,7 @@ exports.login = (req, res) => {
     }
 };
 
+
 // Función para cerrar sesión
 exports.logout = (req, res) => {
     req.session.destroy((err) => {
@@ -192,5 +196,43 @@ exports.logout = (req, res) => {
         }
         res.clearCookie('connect.sid'); // Limpiar cookie de sesión
         return res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+    });
+};
+
+// Función para manejar redirección despues del login con Google
+exports.googleRedirect = (req, res) => {
+    if (!req.user) {
+        return res.redirect('/login');
+    }
+
+    // Guardar usuario en la base de datos
+    db.query('SELECT * FROM usuarios WHERE email = ?', [req.user.email], (error, results) => {
+        if (error) {
+            console.error('Error al consultar usuario de google:', error);
+            return res.redirect('/login');
+        }
+
+        if (results.length === 0) {
+            const newUser = {
+                nombre_completo: req.user.displayName,
+                email: req.user.email,
+                password: null,
+                fecha_registro: new Date()
+            };
+            db.query('INSERT INTO usuarios SET ?', newUser, (insertError) => {
+                if (insertError){
+                    console.log('Error al insertar usuario de Google:', insertErrot);
+                }
+            });
+        }
+
+        // Crear sesión 
+        req.session.user ={
+            email: req.user.email,
+            nombre: req.user.displayName
+        };
+
+        // Redirigir a página de incio
+        return res.redirect('/index.js');
     });
 };

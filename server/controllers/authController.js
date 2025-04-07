@@ -65,13 +65,14 @@ exports.register = async (req, res) => {
 // LOGIN CON GOOGLE
 exports.googleLogin = async (req, res) => {
     const { id_token } = req.body;
+    console.log('Token recibido del front:', id_token);
 
     if (!id_token) return res.status(400).json({ success: false, error: 'Token no proporcionado' });
 
     try {
         const ticket = await client.verifyIdToken({
             idToken: id_token,
-            audience: 'TU_CLIENT_ID_DE_GOOGLE', // ← Cambia aquí también
+            audience: '378126372935-d2n8i4nmj0ap0h0av3e9nquorcmk1kd8.apps.googleusercontent.com', 
         });
 
         const payload = ticket.getPayload();

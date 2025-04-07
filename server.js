@@ -11,6 +11,7 @@ const rutaGoogleLogin = require('./server/routes/google_login');
 const authRoutes = require('./server/routes/auth');
 const logoutRoute = require('./server/routes/logout_conexion');
 const rutaDashboard = require('./server/routes/dashboard');
+const seleccionarRolRoute = require('./server/routes/seleccion_rol');
 
 require('dotenv').config(); // Asegúrate de cargar variables de entorno
 
@@ -39,8 +40,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/auth/logout', logoutRoute);
 app.use('/registro_conexion', registroRouter);
 app.use('/api/login', rutaLogin);
-app.use('/api/google-login', rutaGoogleLogin);
 app.use('/api/dashboard', rutaDashboard);
+app.use('api/seleccionar-rol', seleccionarRolRoute);
 
 //  Ruta principal para mostrar el formulario
 app.get('/', (req, res) => {

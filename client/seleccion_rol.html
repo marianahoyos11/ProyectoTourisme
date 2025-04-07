@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Selecciona tu Rol</title>
-  <link rel="stylesheet" href="./css/styles_pagina.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seleccionar Rol - Tourisme</title>
+    <link rel="stylesheet" href="css/seleccion_rol.css" />
+    <link rel="icon" href="assets/logo.png" type="image/png">
 </head>
 <body>
-  <div class="container">
-    <h2>Selecciona tu rol</h2>
-    <button id="btnTurista">Soy Turista</button>
-    <button id="btnNegocio">Soy Negocio</button>
-  </div>
+    <!-- Fondo decorativo -->
+    <div class="background-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
 
-  <script src="./js/seleccion_rol.js"></script>
+    <header>
+        <div class="logo-container">
+            <img src="img/logo.png" alt="" />
+        </div>
+    </header>
+
+    <main>
+        <div class="rol-container">
+            <div class="rol-card">
+                <h2>Selecciona tu rol</h2>
+                <p class="subtitle">Elige cómo deseas explorar Tourisme</p>
+
+                <div class="rol-buttons">
+                    <a href="registro_usuario.html" class="rol-btn">Turista</a>
+                    <a href="registro_admin.html" class="rol-btn">Administrador</a>
+                </div>
+
+                <div class="volver">
+                    <a href="index.html" class="volver-link">← Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/seleccion_rol.js"></script>
 </body>
 </html>

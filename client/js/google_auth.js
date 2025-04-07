@@ -12,7 +12,7 @@ window.onload = function () {
 function handleGoogleLogin(response) {
     const id_token = response.credential;
 
-    fetch('/api/google-login', {
+    fetch('/api/auth/google-login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

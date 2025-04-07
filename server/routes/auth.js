@@ -21,7 +21,7 @@ router.get('/google',
 router.get('/google/callback',
     passport.authenticate('google', {
         successRedirect: 'login',  //Si la autenticación es exitosa, redirige a la ruta de login
-        failureRedirect: '/index' // Si la autenticación falla, redirige a la ruta de index
+        failureRedirect: '/index' 
     
     })
 );

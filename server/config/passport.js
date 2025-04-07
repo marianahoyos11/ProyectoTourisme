@@ -13,7 +13,7 @@ module.exports = function(passport) {
             const email = profile.emails[0].value;
             const fullName = profile.displayName;
 
-            db.query('SELECT * FROM usuario WHERE correo = ?', [correo], (err, results) => {
+            db.query('SELECT * FROM usuarios WHERE email = ?', [email], (err, results) => {
                 if (err) return done(err);
 
                 if (results.length > 0) {
@@ -22,13 +22,13 @@ module.exports = function(passport) {
                 } else {
                     // Crear nuevo usuario
                     const nuevoUsuario = {
-                        nombre: fullName,
-                        correo: email,
-                        contrasena: null,
-                        fecha_registro: new Date()
+                        nombre_completo: fullName,
+                        email: email,
+                        password: null,
+                        fecha_registro: new Date(),
                     };
 
-                    db.query('INSERT INTO usuario SET ?', nuevoUsuario, (err, res) => {
+                    db.query('INSERT INTO usuarios SET ?', nuevoUsuario, (err, res) => {
                         if (err) return done(err);
                         nuevoUsuario.id = res.insertId;
                         return done(null, nuevoUsuario);
@@ -45,7 +45,7 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        db.query('SELECT * FROM usuario WHERE id_usuario = ?', [id], (err, results) => {
+        db.query('SELECT * FROM usuarios WHERE id = ?', [id], (err, results) => {
             if (err) return done(err);
             done(null, results[0]);
         });

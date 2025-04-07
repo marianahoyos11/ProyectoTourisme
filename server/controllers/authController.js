@@ -3,194 +3,124 @@ const path = require('path');
 const fs = require('fs');
 const db = require('../database/database.js');
 const multer = require('multer');
+const {OAuth2Client} = require('google-auth-library');
+const client = new OAuth2Client('378126372935-d2n8i4nmj0ap0h0av3e9nquorcmk1kd8.apps.googleusercontent.com');
 
-// Asegúrate de que la carpeta de uploads exista
-const uploadDir = path.join(__dirname, '../../uploads/avatars');
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-    console.log('Carpeta de avatares creada:', uploadDir);
-}
+// LOGIN NORMAL
+exports.login = async (req, res) => {
+    const { correo, contrasena } = req.body;
 
-// Configuración para almacenar avatares
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, uploadDir);
-    },
-    filename: function(req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        const ext = path.extname(file.originalname);
-        cb(null, 'avatar-' + uniqueSuffix + ext);
-    }
-});
+    db.query('SELECT a.*, u.nombre, u.id_usuario FROM autenticacion a JOIN usuario u ON a.id_usuario = u.id_usuario WHERE a.correo = ? AND a.tipo_autenticacion = "normal"', [correo], async (error, results) => {
+        if (error) return res.status(500).json({ success: false, error: 'Error del servidor' });
 
-const upload = multer({ 
-    storage: storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // Límite de 5MB
-    fileFilter: function(req, file, cb) {
-        // Aceptar solo imágenes
-        if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-            return cb(new Error('Solo se permiten archivos de imagen'), false);
-        }
-        cb(null, true);
-    }
-}).single('avatar');
+        if (results.length === 0) return res.status(401).json({ success: false, error: 'Correo o contraseña incorrectos' });
 
-// Función para manejar el registro de usuarios
-exports.register = (req, res) => {
-    console.log('Iniciando proceso de registro');
-    
-    upload(req, res, async function(err) {
-        if (err instanceof multer.MulterError) {
-            console.error('Error de Multer:', err);
-            return res.status(400).json({ message: 'Error al subir la imagen: ' + err.message });
-        } else if (err) {
-            console.error('Error general:', err);
-            return res.status(400).json({ message: 'Error: ' + err.message });
-        }
+        const usuario = results[0];
+        const passwordMatch = await bcrypt.compare(contrasena, usuario.contrasena_hash);
 
-        try {
-            // Extraer datos del formulario
-            console.log('Datos recibidos:', req.body);
-            
-            const fullName = req.body.fullName;
-            const email = req.body.email;
-            const birthDate = req.body.birthDate;
-            const gender = req.body.gender;
-            const nationality = req.body.nationality || null;
-            const password = req.body.password;
-            
-            console.log('Datos procesados:', {
-                fullName, email, birthDate, gender, nationality
-            });
-            
-            // Validar datos
-            if (!fullName || !email || !birthDate || !gender || !password) {
-                console.error('Faltan campos obligatorios');
-                return res.status(400).json({ message: 'Todos los campos obligatorios deben ser completados' });
-            }
+        if (!passwordMatch) return res.status(401).json({ success: false, error: 'Correo o contraseña incorrectos' });
 
-            // Verificar si el correo ya está registrado
-            db.query('SELECT * FROM usuarios WHERE email = ?', [email], async (error, results) => {
-                if (error) {
-                    console.error('Error en la consulta:', error);
-                    return res.status(500).json({ message: 'Error en el servidor' });
-                }
+        req.session.user = {
+            id: usuario.id_usuario,
+            nombre: usuario.nombre,
+            correo: usuario.correo
+        };
 
-                if (results.length > 0) {
-                    console.log('Email ya registrado');
-                    return res.status(400).json({ message: 'Este correo electrónico ya está registrado' });
-                }
-
-                try {
-                    // Encriptar la contraseña
-                    const hashedPassword = await bcrypt.hash(password, 10);
-                    console.log('Contraseña encriptada');
-                    
-                    // Ruta del avatar (si se subió uno)
-                    let avatarPath = null;
-                    if (req.file) {
-                        avatarPath = req.file.path.replace(/\\/g, '/'); // Normalizar la ruta para la base de datos
-                        console.log('Avatar subido:', avatarPath);
-                    }
-
-                    // Insertar usuario en la base de datos
-                    const userData = {
-                        nombre_completo: fullName,
-                        email: email,
-                        fecha_nacimiento: birthDate,
-                        genero: gender,
-                        nacionalidad: nationality,
-                        password: hashedPassword,
-                        avatar: avatarPath,
-                        fecha_registro: new Date()
-                    };
-
-                    console.log('Insertando usuario en la base de datos');
-                    db.query('INSERT INTO usuarios SET ?', userData, (error, results) => {
-                        if (error) {
-                            console.error('Error al insertar usuario:', error);
-                            return res.status(500).json({ message: 'Error al registrar usuario: ' + error.message });
-                        }
-
-                        console.log('Usuario registrado exitosamente');
-                        return res.status(201).json({ 
-                            message: 'Usuario registrado exitosamente',
-                            userId: results.insertId
-                        });
-                    });
-                } catch (hashError) {
-                    console.error('Error al encriptar la contraseña:', hashError);
-                    return res.status(500).json({ message: 'Error al procesar la contraseña' });
-                }
-            });
-        } catch (error) {
-            console.error('Error en el registro:', error);
-            return res.status(500).json({ message: 'Error en el servidor: ' + error.message });
-        }
+        return res.status(200).json({ success: true, rol: 'usuario' });
     });
 };
 
-// Función para manejar el inicio de sesión
-exports.login = (req, res) => {
-    try {
-        const { email, password } = req.body;
-        console.log('Intento de login:', email);
+// REGISTRO NORMAL
+exports.register = async (req, res) => {
+    const { nombre, correo, contrasena, fecha_nacimiento, genero, nacionalidad } = req.body;
+    const contrasena_hash = await bcrypt.hash(contrasena, 10);
 
-        // Validar datos
-        if (!email || !password) {
-            return res.status(400).json({ message: 'Por favor, proporcione correo y contraseña' });
-        }
+    // Verificar si el correo ya existe
+    db.query('SELECT * FROM autenticacion WHERE correo = ?', [correo], (err, results) => {
+        if (err) return res.status(500).json({ success: false, error: 'Error al verificar correo' });
 
-        // Buscar usuario por email
-        db.query('SELECT * FROM usuarios WHERE email = ?', [email], async (error, results) => {
-            if (error) {
-                console.error('Error en la consulta:', error);
-                return res.status(500).json({ message: 'Error en el servidor' });
-            }
+        if (results.length > 0) return res.status(400).json({ success: false, error: 'El correo ya está registrado' });
 
-            if (results.length === 0) {
-                return res.status(401).json({ message: 'Credenciales incorrectas' });
-            }
+        // Insertar en tabla usuario
+        const id_rol = 2; // ← Cambia esto si necesitas otro rol
+        db.query('INSERT INTO usuario (nombre, correo, id_rol) VALUES (?, ?, ?)', [nombre, correo, id_rol], (err, result) => {
+            if (err) return res.status(500).json({ success: false, error: 'Error al registrar usuario' });
 
-            const user = results[0];
+            const id_usuario = result.insertId;
 
-            // Verificar contraseña
-            const passwordMatch = await bcrypt.compare(password, user.password);
-            if (!passwordMatch) {
-                return res.status(401).json({ message: 'Credenciales incorrectas' });
-            }
+            // Insertar en tabla autenticación
+            const tipo_autenticacion = 'normal';
+            db.query('INSERT INTO autenticacion (id_usuario, correo, contrasena_hash, fecha_nacimiento, genero, nacionalidad, tipo_autenticacion) VALUES (?, ?, ?, ?, ?, ?, ?)', 
+                [id_usuario, correo, contrasena_hash, fecha_nacimiento, genero, nacionalidad, tipo_autenticacion],
+                (err2) => {
+                    if (err2) return res.status(500).json({ success: false, error: 'Error al guardar autenticación' });
 
-            // Crear sesión de usuario
-            req.session.user = {
-                id: user.id,
-                email: user.email,
-                nombre: user.nombre_completo
-            };
-
-            console.log('Login exitoso:', user.email);
-            return res.status(200).json({ 
-                message: 'Inicio de sesión exitoso',
-                user: {
-                    id: user.id,
-                    email: user.email,
-                    nombre: user.nombre_completo,
-                    avatar: user.avatar
+                    return res.status(201).json({ success: true, mensaje: 'Usuario registrado exitosamente' });
                 }
+            );
+        });
+    });
+};
+
+// LOGIN CON GOOGLE
+exports.googleLogin = async (req, res) => {
+    const { id_token } = req.body;
+
+    if (!id_token) return res.status(400).json({ success: false, error: 'Token no proporcionado' });
+
+    try {
+        const ticket = await client.verifyIdToken({
+            idToken: id_token,
+            audience: 'TU_CLIENT_ID_DE_GOOGLE', // ← Cambia aquí también
+        });
+
+        const payload = ticket.getPayload();
+        const { email, name, sub: id_google } = payload;
+
+        // Verificar si ya existe autenticación con Google
+        db.query('SELECT a.*, u.nombre FROM autenticacion a JOIN usuario u ON a.id_usuario = u.id_usuario WHERE a.correo = ? AND a.tipo_autenticacion = "google"', [email], (err, results) => {
+            if (err) return res.status(500).json({ success: false, error: 'Error en el servidor' });
+
+            if (results.length > 0) {
+                const usuario = results[0];
+                req.session.user = {
+                    id: usuario.id_usuario,
+                    nombre: usuario.nombre,
+                    correo: usuario.correo
+                };
+                return res.status(200).json({ success: true, rol: 'usuario' });
+            }
+
+            // Crear nuevo usuario y autenticación Google
+            const id_rol = 2;
+            db.query('INSERT INTO usuario (nombre, correo, id_rol) VALUES (?, ?, ?)', [name, email, id_rol], (err2, result) => {
+                if (err2) return res.status(500).json({ success: false, error: 'Error al registrar usuario' });
+
+                const id_usuario = result.insertId;
+
+                db.query('INSERT INTO autenticacion (id_usuario, correo, contrasena_hash, fecha_nacimiento, genero, nacionalidad, id_google, tipo_autenticacion) VALUES (?, ?, NULL, NULL, NULL, NULL, ?, "google")',
+                    [id_usuario, email, id_google],
+                    (err3) => {
+                        if (err3) return res.status(500).json({ success: false, error: 'Error al guardar autenticación de Google' });
+
+                        req.session.user = {
+                            id: id_usuario,
+                            nombre: name,
+                            correo: email
+                        };
+                        return res.status(200).json({ success: true, rol: 'usuario' });
+                    }
+                );
             });
         });
     } catch (error) {
-        console.error('Error en el login:', error);
-        return res.status(500).json({ message: 'Error en el servidor' });
+        console.error('Error al verificar token de Google:', error);
+        return res.status(401).json({ success: false, error: 'Token inválido' });
     }
 };
 
-// Función para cerrar sesión
+// CERRAR SESIÓN
 exports.logout = (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).json({ message: 'Error al cerrar sesión' });
-        }
-        res.clearCookie('connect.sid'); // Limpiar cookie de sesión
-        return res.status(200).json({ message: 'Sesión cerrada exitosamente' });
-    });
+    res.clearCookie('token'); // Solo si usas cookies en algún momento
+  return res.status(200).json({ message: 'Sesión cerrada exitosamente' });
 };

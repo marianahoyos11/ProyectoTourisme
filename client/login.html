@@ -63,10 +63,23 @@
                     <span></span>
                 </div>
 
-                <button id="googleLoginBtn" class="google-btn">
-                    <img src="https://www.google.com/favicon.ico" alt="Google icon">
-                    Iniciar sesión con Google
-                </button>
+                <!-- boton de google -->
+                <div id="g_id_onload"
+                    data-client_id="378126372935-d2n8i4nmj0ap0h0av3e9nquorcmk1kd8.apps.googleusercontent.com"
+                    data-context="signin"
+                    data-ux_mode="popup"
+                    data-callback="handleCredentialResponse"
+                    data-auto_prompt="false">
+                </div>
+
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-shape="rectangular"
+                    data-theme="outline"
+                    data-text="signin_with"
+                    data-size="large"
+                    data-logo_alignment="left">
+                </div>
 
                 <p class="register-text">
                     ¿No tienes una cuenta? 
@@ -77,5 +90,7 @@
     </main>
 
     <script src="js/login.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="js/google_auth.js"></script>
 </body>
 </html>

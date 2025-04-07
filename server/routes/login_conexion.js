@@ -26,7 +26,15 @@ router.post('/', async (req, res) => {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
 
-        // Enviar respuesta con el rol del usuario
+        //  Guardar información en la sesión
+        req.session.user = {
+            id_usuario: user.id_usuario,
+            rol: user.rol,
+            email: email
+        };
+
+        console.log('Sesión iniciada:', req.session.user);
+
         res.status(200).json({ message: 'Login exitoso', rol: user.rol });
 
     } catch (error) {

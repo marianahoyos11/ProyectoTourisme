@@ -23,15 +23,12 @@
             </nav>
             <div class="logout-wrapper">
                 <i class="fas fa-user user-icon"></i>
-                <a href="index.html">               
-                    <button id="logoutBtn">Cerrar sesión</button>
-                </a>
-            </div>                                    
+                <button class="btn btn-ghost login-button" id="logoutBtn">Cerrar sesión</button>
+            </div>                                  
         </div>
         <button class="menu-toggle" id="menuToggle">
             <i class="fas fa-bars"></i>
         </button>
-        </div>
     </header>
 
     <div class="mobile-menu" id="mobileMenu">
@@ -62,7 +59,7 @@
                 <div class="filtro-grupo">
                     <label for="categoria">Categoría</label>
                     <select id="categoria">
-                        <option value="todos">Todos los destinos</option>
+                        <option value="todos">Todas las categorias</option>
                         <option value="parques">Parques y Reservas</option>
                         <option value="miradores">Miradores</option>
                         <option value="museos">Museos y Cultura</option>
@@ -154,7 +151,6 @@
         </div>
     </section>
 
-
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -170,7 +166,7 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-links">
                     <h3>Servicios</h3>
                     <ul>
@@ -196,8 +192,18 @@
         </div>
     </footer>
 
+    <!-- Modal de confirmación de cierre de sesión -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <p>¿Estás segur@ de salir?</p>
+            <div class="modal-buttons">
+                <button id="confirmLogout" class="btn btn-confirm">Sí</button>
+                <button id="cancelLogout" class="btn btn-cancel">No</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/home.js"></script>
     <script src="js/logout.js"></script>
 </body>
 </html>
-

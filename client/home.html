@@ -23,7 +23,10 @@
             </nav>
             <div class="logout-wrapper">
                 <i class="fas fa-user user-icon"></i>
-                <button class="btn btn-ghost login-button" id="logoutBtn">Cerrar sesión</button>
+                <!-- <div id="userGreeting" class="user-greeting">Hola, [usuario]</div> -->
+                <a href="index.html">               
+                    <button class="btn btn-ghost logout-button" id="logoutBtn">Cerrar sesión</button>
+                </a>
             </div>                                  
         </div>
         <button class="menu-toggle" id="menuToggle">
@@ -192,17 +195,17 @@
         </div>
     </footer>
 
-    <!-- Modal de confirmación de cierre de sesión -->
+    <!-- Modal de confirmación de cierre de sesión
     <div id="logoutModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
             <p>¿Estás segur@ de salir?</p>
             <div class="modal-buttons">
-                <button id="confirmLogout" class="btn btn-confirm">Sí</button>
-                <button id="cancelLogout" class="btn btn-cancel">No</button>
+                <button id="confirmLogout" class="boton-azul" onclick="confirmarAccion()">Sí</button>
+                <button id="cancelLogout" class="boton-azul" onclick="cancelarAccion()">No</button>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <script src="js/home.js"></script>
     <script src="js/logout.js"></script>

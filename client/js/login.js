@@ -17,6 +17,9 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
+            //Guarda el nombre del usuaario 
+            localStorage.setItem('nombreUsuario', data.nombre);
+            
             // Redirige según el rol
             if (data.rol === 'usuario') {
                 window.location.href = 'home.html';

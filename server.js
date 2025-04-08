@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 //  Rutas
 app.use('/api/auth', authRoutes);
-app.use('/api/auth/logout', logoutRoute);
+//app.use('/api/auth/logout', logoutRoute);
 app.use('/registro_conexion', registroRouter);
 app.use('/api/login', rutaLogin);
 app.use('/api/dashboard', rutaDashboard);

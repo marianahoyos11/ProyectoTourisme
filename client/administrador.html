@@ -6,7 +6,6 @@
   <title>Tourisme - Panel de Administrador</title>
   <link rel="stylesheet" href="css/styles_pagina.css">
   <link rel="stylesheet" href="css/administrador.css">
-  <link rel="stylesheet" href="css/categoria.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -22,8 +21,6 @@
                   <li><a href="#categorias_seccion">Categorías</a></li>
                   <li><a href="#destinos_seccion">Destinos</a></li>
                   <li><a href="#empresas_seccion">Empresas</a></li>
-                  <li><a href="#reservas_seccion">Reservas</a></li>
-                  <li><a href="#contenido_seccion">Contenido</a></li>
                   <li><a href="#auditoria_seccion">Auditoría</a></li>
               </ul>
           </nav>
@@ -48,61 +45,10 @@
           <li><a href="#categorias_seccion">Categorías</a></li>
           <li><a href="#destinos_seccion">Destinos</a></li>
           <li><a href="#empresas_seccion">Empresas</a></li>
-          <li><a href="#reservas_seccion">Reservas</a></li>
-          <li><a href="#contenido_seccion">Contenido</a></li>
           <li><a href="#auditoria_seccion">Auditoría</a></li>
           <li><a href="index.html">Cerrar Sesión</a></li>
       </ul>
   </div>
-
-  <div class="admin-dashboard">
-      <div class="container">
-          <div class="dashboard-header">
-              <h1>Panel de Administración</h1>
-              <p>Bienvenido al panel de control de Tourisme</p>
-          </div>
-
-          <div class="stats-grid">
-              <div class="stat-card">
-                  <div class="stat-icon">
-                      <i class="fas fa-users"></i>
-                  </div>
-                  <div class="stat-content">
-                      <h3>1,245</h3>
-                      <p>Usuarios Registrados</p>
-                  </div>
-              </div>
-              <div class="stat-card">
-                  <div class="stat-icon">
-                      <i class="fas fa-map-marker-alt"></i>
-                  </div>
-                  <div class="stat-content">
-                      <h3>24</h3>
-                      <p>Destinos Activos</p>
-                  </div>
-              </div>
-              <div class="stat-card">
-                  <div class="stat-icon">
-                      <i class="fas fa-building"></i>
-                  </div>
-                  <div class="stat-content">
-                      <h3>18</h3>
-                      <p>Empresas Registradas</p>
-                  </div>
-              </div>
-              <div class="stat-card">
-                  <div class="stat-icon">
-                      <i class="fas fa-calendar-check"></i>
-                  </div>
-                  <div class="stat-content">
-                      <h3>156</h3>
-                      <p>Reservas Mensuales</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-
   <section class="usuarios admin-section" id="usuarios_seccion">
       <div class="container">
           <div class="section-header admin-header">
@@ -110,14 +56,8 @@
               <p>Administra los usuarios registrados en la plataforma</p>
               <div class="header-actions">
                   <div class="filter-controls">
-                      <select class="filter-select">
-                          <option value="all">Todos los roles</option>
-                          <option value="usuario">Usuarios</option>
-                          <option value="negocio">Negocios</option>
-                          <option value="administrador">Administradores</option>
-                      </select>
                   </div>
-                  <button class="btn btn-primary add-btn">
+                  <button class="btn btn-primary add-btn-usuario">
                       <i class="fas fa-plus"></i> Añadir Usuario
                   </button>
               </div>
@@ -144,7 +84,6 @@
                           <td class="actions">
                               <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
                               <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
                           </td>
                       </tr>
                       <tr>
@@ -156,7 +95,6 @@
                           <td class="actions">
                               <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
                               <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
                           </td>
                       </tr>
                       <tr>
@@ -168,7 +106,6 @@
                           <td class="actions">
                               <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
                               <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
                           </td>
                       </tr>
                       <tr>
@@ -180,7 +117,6 @@
                           <td class="actions">
                               <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
                               <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
                           </td>
                       </tr>
                   </tbody>
@@ -189,12 +125,39 @@
       </div>
   </section>
 
+<!-- Modal de Usuario -->
+<div id="modalUsuario" class="modal">
+    <div class="modal-content">
+      <span class="close close-usuario" id="cerrarModalUsuario">&times;</span>
+      <h2 id="modalTitulo">Agregar Usuario</h2>
+      <form id="formUsuario">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo:</label>
+          <input type="email" id="correo" name="correo" required />
+        </div>
+        <div class="form-group">
+          <label for="id_rol">Rol:</label>
+          <select id="id_rol" name="id_rol" required>
+            <option value="1">Usuario</option>
+            <option value="2">Negocio</option>
+            <option value="3">Administrador</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+    </div>
+  </div>
+  
   <section class="categorias admin-section" id="categorias_seccion">
       <div class="container">
           <div class="section-header admin-header">
               <h2>Gestión de Categorías Turísticas</h2>
               <p>Administra las categorías de destinos turísticos</p>
-              <button class="btn btn-primary add-btn">
+              <button class="btn btn-primary add-btn-categoria">
                   <i class="fas fa-plus"></i> Añadir Categoría
               </button>
           </div>
@@ -208,52 +171,30 @@
                           <th>Acciones</th>
                       </tr>
                   </thead>
-                  <tbody>
-                      <tr>
-                          <td>1</td>
-                          <td>Turismo Urbano</td>
-                          <td>Destinos dentro de la ciudad con valor cultural o histórico</td>
-                          <td>8</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>Ecoturismo</td>
-                          <td>Destinos naturales con enfoque en conservación y sostenibilidad</td>
-                          <td>5</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>Turismo Cultural</td>
-                          <td>Destinos con valor histórico, artístico o patrimonial</td>
-                          <td>7</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>4</td>
-                          <td>Turismo Gastronómico</td>
-                          <td>Destinos con enfoque en la gastronomía local</td>
-                          <td>4</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                          </td>
-                      </tr>
+                  <tbody id="categorias-tbody">
+                      
                   </tbody>
               </table>
           </div>
       </div>
   </section>
+
+  <!-- Modal de Categoría -->
+<div id="modalCategoria" class="modal">
+    <div class="modal-content">
+      <span class="close close-categoria">&times;</span>
+      <h2 id="modalCategoriaTitulo">Añadir Categoría</h2>
+      <form id="formCategoria">
+        <label for="nombre_categoria">Nombre:</label>
+        <input type="text" id="nombre_categoria" name="nombre_categoria" required>
+  
+        <label for="descripcion_categoria">Descripción:</label>
+        <textarea id="descripcion_categoria" name="descripcion_categoria" required></textarea>
+  
+        <button type="submit" class="save-btn">Guardar</button>
+      </form>
+    </div>
+  </div>
 
   <section class="destinos admin-section" id="destinos_seccion">
       <div class="container">
@@ -262,15 +203,8 @@
               <p>Administra los destinos turísticos disponibles</p>
               <div class="header-actions">
                   <div class="filter-controls">
-                      <select class="filter-select">
-                          <option value="all">Todas las categorías</option>
-                          <option value="urbano">Turismo Urbano</option>
-                          <option value="eco">Ecoturismo</option>
-                          <option value="cultural">Turismo Cultural</option>
-                          <option value="gastronomico">Turismo Gastronómico</option>
-                      </select>
                   </div>
-                  <button class="btn btn-primary add-btn">
+                  <button class="btn btn-primary add-btn-destino">
                       <i class="fas fa-plus"></i> Añadir Destino
                   </button>
               </div>
@@ -280,91 +214,48 @@
                   <thead>
                       <tr>
                           <th>ID</th>
-                          <th>Imagen</th>
                           <th>Nombre</th>
-                          <th>Categoría</th>
+                          <th>Descripción</th>
                           <th>Ciudad</th>
                           <th>Dirección</th>
-                          <th>Valoración</th>
+                          <th>Categoría</th>
                           <th>Acciones</th>
                       </tr>
                   </thead>
-                  <tbody>
-                      <tr>
-                          <td>1</td>
-                          <td><img src="img/Comuna13.webp" alt="Comuna_13" class="table-img"></td>
-                          <td>La comuna 13</td>
-                          <td>Turismo Urbano</td>
-                          <td>Medellín</td>
-                          <td>Comuna 13, San Javier</td>
-                          <td>4.8</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td><img src="img/pueblito_paisa.jpg" alt="pueblito_paisa" class="table-img"></td>
-                          <td>Pueblito paisa</td>
-                          <td>Turismo Cultural</td>
-                          <td>Medellín</td>
-                          <td>Cerro Nutibara</td>
-                          <td>4.7</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td><img src="img/parque_arvi.jpeg" alt="Parque Arví" class="table-img"></td>
-                          <td>Parque Arví</td>
-                          <td>Ecoturismo</td>
-                          <td>Medellín</td>
-                          <td>Corregimiento de Santa Elena</td>
-                          <td>4.9</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>4</td>
-                          <td><img src="img/parque_explora.jpg" alt="Parque explora" class="table-img"></td>
-                          <td>Parque explora</td>
-                          <td>Turismo Urbano</td>
-                          <td>Medellín</td>
-                          <td>Calle 73 #45-24</td>
-                          <td>4.6</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>5</td>
-                          <td><img src="img/plaza_botero.jpg" alt="Plaza Botero" class="table-img"></td>
-                          <td>Plaza Botero</td>
-                          <td>Turismo Cultural</td>
-                          <td>Medellín</td>
-                          <td>Calle 52 #52-43</td>
-                          <td>4.3</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
+                  <tbody id="destinos-tbody">
                   </tbody>
               </table>
           </div>
       </div>
   </section>
+
+  <!-- Modal de Destinos -->
+<div id="modalDestino" class="modal">
+    <div class="modal-content">
+      <span class="close close-destino">&times;</span>
+      <h2 id="modalDestinoTitulo">Añadir Destino</h2>
+      <form id="formDestino">
+        <label for="nombre_destino">Nombre:</label>
+        <input type="text" id="nombre_destino" name="nombre_destino" required>
+  
+        <label for="descripcion_destino">Descripción:</label>
+        <textarea id="descripcion_destino" name="descripcion_destino" required></textarea>
+  
+        <label for="ciudad_destino">Ciudad:</label>
+        <input type="text" id="ciudad_destino" name="ciudad_destino" required>
+  
+        <label for="direccion_destino">Dirección:</label>
+        <input type="text" id="direccion_destino" name="direccion_destino" required>
+  
+        <label for="categoria_destino">Categoría:</label>
+        <select id="categoria_destino" name="categoria_destino" required>
+          <!-- Opciones se cargarán dinámicamente -->
+        </select>
+  
+        <button type="submit" class="save-btn">Guardar</button>
+      </form>
+    </div>
+  </div>
 
   <section class="empresas admin-section" id="empresas_seccion">
       <div class="container">
@@ -373,14 +264,8 @@
               <p>Administra las empresas asociadas a la plataforma</p>
               <div class="header-actions">
                   <div class="filter-controls">
-                      <select class="filter-select">
-                          <option value="all">Todos los tipos</option>
-                          <option value="Restaurante">Restaurantes</option>
-                          <option value="Atracción">Atracciones</option>
-                          <option value="Otro">Otros</option>
-                      </select>
                   </div>
-                  <button class="btn btn-primary add-btn">
+                  <button class="btn btn-primary add-btn-empresa">
                       <i class="fas fa-plus"></i> Añadir Empresa
                   </button>
               </div>
@@ -391,271 +276,66 @@
                       <tr>
                           <th>ID</th>
                           <th>Nombre</th>
+                          <th>Descripción</th>
                           <th>Tipo</th>
-                          <th>Destino</th>
-                          <th>Propietario</th>
-                          <th>Teléfono</th>
-                          <th>Productos</th>
-                          <th>Acciones</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>1</td>
-                          <td>Aventuras Medellín</td>
-                          <td>Atracción</td>
-                          <td>Comuna 13</td>
-                          <td>Carlos Rodríguez</td>
-                          <td>+57 300 123 4567</td>
-                          <td>3</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>Sabores Paisas</td>
-                          <td>Restaurante</td>
-                          <td>Pueblito Paisa</td>
-                          <td>Ana Gómez</td>
-                          <td>+57 300 987 6543</td>
-                          <td>5</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>Eco Tours</td>
-                          <td>Atracción</td>
-                          <td>Parque Arví</td>
-                          <td>Pedro Sánchez</td>
-                          <td>+57 300 456 7890</td>
-                          <td>4</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>4</td>
-                          <td>Transportes Turísticos</td>
-                          <td>Otro</td>
-                          <td>Varios</td>
-                          <td>Luis Ramírez</td>
-                          <td>+57 300 789 0123</td>
-                          <td>2</td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
-  </section>
-
-  <section class="reservas admin-section" id="reservas_seccion">
-      <div class="container">
-          <div class="section-header admin-header">
-              <h2>Gestión de Reservas</h2>
-              <p>Administra las reservas realizadas por los usuarios</p>
-              <div class="header-actions">
-                  <div class="filter-controls">
-                      <select class="filter-select">
-                          <option value="all">Todos los estados</option>
-                          <option value="pendiente">Pendientes</option>
-                          <option value="confirmada">Confirmadas</option>
-                          <option value="cancelada">Canceladas</option>
-                      </select>
-                  </div>
-                  <button class="btn btn-primary add-btn">
-                      <i class="fas fa-plus"></i> Añadir Reserva
-                  </button>
-              </div>
-          </div>
-          <div class="admin-table-container">
-              <table class="admin-table">
-                  <thead>
-                      <tr>
-                          <th>ID</th>
+                          <th>Horario apertura</th>
+                          <th>Horario cierre</th>
+                          <th>Telefono</th>
                           <th>Usuario</th>
                           <th>Destino</th>
-                          <th>Empresa</th>
-                          <th>Fecha</th>
-                          <th>Hora</th>
-                          <th>Cantidad</th>
-                          <th>Estado</th>
-                          <th>Pago</th>
                           <th>Acciones</th>
                       </tr>
                   </thead>
-                  <tbody>
-                      <tr>
-                          <td>1</td>
-                          <td>María García</td>
-                          <td>Comuna 13</td>
-                          <td>Aventuras Medellín</td>
-                          <td>20/07/2023</td>
-                          <td>10:00 AM</td>
-                          <td>2</td>
-                          <td><span class="status confirmed">Confirmada</span></td>
-                          <td><span class="status completed">Completado</span></td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>Carlos Rodríguez</td>
-                          <td>Parque Arví</td>
-                          <td>Eco Tours</td>
-                          <td>15/08/2023</td>
-                          <td>09:30 AM</td>
-                          <td>4</td>
-                          <td><span class="status pending">Pendiente</span></td>
-                          <td><span class="status pending">Pendiente</span></td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>Laura Martínez</td>
-                          <td>Pueblito Paisa</td>
-                          <td>Sabores Paisas</td>
-                          <td>05/09/2023</td>
-                          <td>11:00 AM</td>
-                          <td>3</td>
-                          <td><span class="status confirmed">Confirmada</span></td>
-                          <td><span class="status completed">Completado</span></td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>4</td>
-                          <td>Juan Pérez</td>
-                          <td>Plaza Botero</td>
-                          <td>Transportes Turísticos</td>
-                          <td>12/09/2023</td>
-                          <td>14:00 PM</td>
-                          <td>2</td>
-                          <td><span class="status cancelled">Cancelada</span></td>
-                          <td><span class="status refunded">Reembolsado</span></td>
-                          <td class="actions">
-                              <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                              <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
+                  <tbody id="empresas-tbody">
                   </tbody>
               </table>
           </div>
       </div>
   </section>
 
-  <section class="contenido admin-section" id="contenido_seccion">
-      <div class="container">
-          <div class="section-header admin-header">
-              <h2>Gestión de Contenido</h2>
-              <p>Administra el contenido promocional de la plataforma</p>
-              <div class="header-actions">
-                  <div class="filter-controls">
-                      <select class="filter-select">
-                          <option value="all">Todo el contenido</option>
-                          <option value="destino">Destinos</option>
-                          <option value="empresa">Empresas</option>
-                      </select>
-                  </div>
-                  <button class="btn btn-primary add-btn">
-                      <i class="fas fa-plus"></i> Añadir Contenido
-                  </button>
-              </div>
-          </div>
-          <div class="contenido-grid">
-              <div class="contenido-card">
-                  <div class="contenido-img">
-                      <img src="img/Comuna13.webp" alt="Comuna 13">
-                      <div class="contenido-actions">
-                          <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                          <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                          <button class="action-btn history-btn"><i class="fas fa-history"></i></button>
-                      </div>
-                  </div>
-                  <div class="contenido-info">
-                      <h3>Descubre la Comuna 13</h3>
-                      <p>Conoce la transformación social a través del arte urbano</p>
-                      <div class="contenido-meta">
-                          <span class="precio">$45.000</span>
-                          <span class="fecha">Publicado: 10/06/2023</span>
-                      </div>
-                      <div class="contenido-tags">
-                          <span class="badge badge-destino">Destino</span>
-                          <span class="badge badge-empresa">Aventuras Medellín</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="contenido-card">
-                  <div class="contenido-img">
-                      <img src="img/pueblito_paisa.jpg" alt="Pueblito Paisa">
-                      <div class="contenido-actions">
-                          <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                          <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                          <button class="action-btn history-btn"><i class="fas fa-history"></i></button>
-                      </div>
-                  </div>
-                  <div class="contenido-info">
-                      <h3>Pueblito Paisa: Tradición Antioqueña</h3>
-                      <p>Sumérgete en la cultura paisa con nuestra visita guiada</p>
-                      <div class="contenido-meta">
-                          <span class="precio">$25.000</span>
-                          <span class="fecha">Publicado: 15/07/2023</span>
-                      </div>
-                      <div class="contenido-tags">
-                          <span class="badge badge-destino">Destino</span>
-                          <span class="badge badge-empresa">Sabores Paisas</span>
-                      </div>
-                  </div>
-              </div>
-              <div class="contenido-card">
-                  <div class="contenido-img">
-                      <img src="img/parque_arvi.jpeg" alt="Parque Arví">
-                      <div class="contenido-actions">
-                          <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                          <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                          <button class="action-btn history-btn"><i class="fas fa-history"></i></button>
-                      </div>
-                  </div>
-                  <div class="contenido-info">
-                      <h3>Aventura en Parque Arví</h3>
-                      <p>Explora la naturaleza en este increíble parque ecológico</p>
-                      <div class="contenido-meta">
-                          <span class="precio">$35.000</span>
-                          <span class="fecha">Publicado: 20/08/2023</span>
-                      </div>
-                      <div class="contenido-tags">
-                          <span class="badge badge-destino">Destino</span>
-                          <span class="badge badge-empresa">Eco Tours</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
+  <!-- Modal de Empresa -->
+<div id="modalEmpresa" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close close-empresa">&times;</span>
+      <h2 id="modalEmpresaTitulo">Añadir Empresa</h2>
+      <form id="formEmpresa">
+        <label>Nombre:</label>
+        <input type="text" id="nombre_empresa" required>
+  
+        <label>Descripción:</label>
+        <textarea id="descripcion_empresa"></textarea>
+  
+        <label>Tipo:</label>
+        <select id="tipo_empresa" required>
+          <option value="">Seleccione</option>
+          <option value="Restaurante">Restaurante</option>
+          <option value="Atracción">Atracción</option>
+          <option value="Otro">Otro</option>
+        </select>
+  
+        <label>Horario de Apertura:</label>
+        <input type="datetime-local" id="horario_apertura_empresa">
+  
+        <label>Horario de Cierre:</label>
+        <input type="datetime-local" id="horario_cierre_empresa">
+  
+        <label>Teléfono:</label>
+        <input type="text" id="telefono_empresa">
+  
+        <label>Usuario:</label>
+        <select id="usuario_empresa" required>
+          <!-- Opciones cargadas dinámicamente -->
+        </select>
+  
+        <label>Destino Turístico:</label>
+        <select id="destino_empresa" required>
+          <!-- Opciones cargadas dinámicamente -->
+        </select>
+  
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+  </div>
 
   <section class="auditoria admin-section" id="auditoria_seccion">
       <div class="container">
@@ -664,18 +344,7 @@
               <p>Registro de acciones realizadas en el sistema</p>
               <div class="header-actions">
                   <div class="filter-controls">
-                      <select class="filter-select">
-                          <option value="all">Todas las acciones</option>
-                          <option value="usuario">Usuarios</option>
-                          <option value="destino">Destinos</option>
-                          <option value="empresa">Empresas</option>
-                          <option value="reserva">Reservas</option>
-                          <option value="contenido">Contenido</option>
-                      </select>
                   </div>
-                  <button class="btn btn-primary export-btn">
-                      <i class="fas fa-download"></i> Exportar Registros
-                  </button>
               </div>
           </div>
           <div class="admin-table-container">
@@ -690,57 +359,8 @@
                           <th>Detalles</th>
                       </tr>
                   </thead>
-                  <tbody>
-                      <tr>
-                          <td>1</td>
-                          <td>Juan Pérez (Admin)</td>
-                          <td>Usuario creado</td>
-                          <td>15/03/2023</td>
-                          <td>10:25 AM</td>
-                          <td class="actions">
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>Carlos Rodríguez (Negocio)</td>
-                          <td>Empresa actualizada</td>
-                          <td>22/04/2023</td>
-                          <td>14:30 PM</td>
-                          <td class="actions">
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>Juan Pérez (Admin)</td>
-                          <td>Destino eliminado</td>
-                          <td>10/05/2023</td>
-                          <td>09:15 AM</td>
-                          <td class="actions">
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>4</td>
-                          <td>Sistema</td>
-                          <td>Reserva confirmada</td>
-                          <td>05/06/2023</td>
-                          <td>16:45 PM</td>
-                          <td class="actions">
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>5</td>
-                          <td>Ana Gómez (Negocio)</td>
-                          <td>Contenido actualizado</td>
-                          <td>12/06/2023</td>
-                          <td>11:20 AM</td>
-                          <td class="actions">
-                              <button class="action-btn view-btn"><i class="fas fa-eye"></i></button>
-                          </td>
-                      </tr>
+                  <tbody id="bitacora-tbody">
+                      
                   </tbody>
               </table>
           </div>
@@ -789,9 +409,12 @@
       </div>
   </footer>
 
-  <script src="Js/script.js"></script>
-  <script src="Js/admin.js"></script>
-  <script src="js/categoria.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/usuarios_crud.js"></script>
+  <script src="js/categorias_crud.js"></script>
+  <script src="js/destinos_crud.js"></script>
+  <script src="js/empresas_crud.js"></script>
+  <script src="js/bitacora_crud.js"></script>
 </body>
 </html>
 

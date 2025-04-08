@@ -122,6 +122,14 @@ exports.googleLogin = async (req, res) => {
 
 // CERRAR SESIÓN
 exports.logout = (req, res) => {
-    res.clearCookie('token'); // Solo si usas cookies en algún momento
-  return res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error al cerrar sesión:', err);
+            return res.status(500).json({ message: 'Error al cerrar sesión' });
+        }
+
+        res.clearCookie('connect.sid'); // Limpia la cookie de la sesión
+        return res.status(200).json({ message: 'Sesión cerrada exitosamente' });
+    });
 };
+

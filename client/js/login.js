@@ -16,9 +16,14 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
+            // GUARDAMOS NOMBRE Y ROL EN LOCALSTORAGE
+            localStorage.setItem('nombre', data.nombre);
+            localStorage.setItem('rol', data.rol);
+
             // Mostrar alerta sin botones y redirigir automáticamente
             let redirectUrl = data.rol === 'usuario' ? 'home.html' :
                               data.rol === 'negocio' ? 'empresa.html' :
+                              data.rol === 'administrador' ? 'administrador.html' :
                               null;
 
             if (redirectUrl) {

@@ -31,6 +31,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         const result = await response.json();
         if (response.ok) {
             alert(result.message);
+            window.location.href = 'login.html';
         } else {
             alert(result.error || 'Ocurrió un error al registrar.');
         }

@@ -31,7 +31,7 @@ app.use('/api/categorias', categoriasRouter);
 app.use('/api/destinos', destinosRouter);
 app.use('/api/empresas', empresasRoutes);
 app.use("/api/bitacora", bitacoraRoutes);
-
+app.use(express.static('public'));
 
 // Ruta principal para mostrar el formulario
 app.get('/', (req, res) => {

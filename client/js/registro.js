@@ -29,13 +29,30 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         });
 
         const result = await response.json();
+
         if (response.ok) {
-            alert(result.message);
+            Swal.fire({
+                icon: 'success',
+                title: '¡Registro exitoso!',
+                text: result.message,
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                window.location.href = 'login.html';
+            });
         } else {
-            alert(result.error || 'Ocurrió un error al registrar.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: result.error || 'Ocurrió un error al registrar.'
+            });
         }
+
     } catch (error) {
         console.error('Error:', error);
-        alert('Error de red o del servidor.');
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de red',
+            text: 'No se pudo conectar con el servidor.'
+        });
     }
 });

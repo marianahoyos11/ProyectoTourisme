@@ -10,7 +10,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email,  password })
         });
 
         const data = await response.json();
@@ -19,6 +19,14 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             // GUARDAMOS NOMBRE Y ROL EN LOCALSTORAGE
             localStorage.setItem('nombre', data.nombre);
             localStorage.setItem('rol', data.rol);
+            localStorage.setItem('token', data.token); 
+
+
+            // GUARDAMOS ID DE EPRESA EN LOCALSTORAGE
+            if(data.id_empresa){
+                localStorage.setItem('id_empresa', data.id_empresa);
+            }
+
 
             // Mostrar alerta sin botones y redirigir automáticamente
             let redirectUrl = data.rol === 'usuario' ? 'home.html' :

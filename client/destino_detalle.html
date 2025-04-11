@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourisme - Detalles del Destino</title>
+    <link rel="stylesheet" href="css/empresa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo">
+                <span>Tourisme</span>
+            </div>
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="index.html" class="active">Destinos</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="index.html">
+                    <button class="btn btn-primary">Volver</button>
+                </a>
+            </div>            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html" class="active">Destinos</a></li>
+            <li><a href="#">Sobre Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html">Destinos</a></li>
+                <li><span id="destino-breadcrumb">Detalles del Destino</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="destino-detalle">
+        <div class="container">
+            <div class="destino-header">
+                <h1 id="destino-nombre">Detalles del Destino</h1>
+            </div>
+
+            <div class="destino-content">
+                <!-- Sección de productos y servicios (ahora en lugar de la galería) -->
+                <div class="productos-seccion">
+                    <h2>Productos y Servicios</h2>
+                    <div class="productos-grid" id="productos-container">
+                        <!-- Aquí se mostrarán los productos añadidos -->
+                        <p id="no-productos" class="no-productos">No hay productos o servicios disponibles para este destino.</p>
+                    </div>
+                    <div class="destino-acciones" style="margin-top: 20px;">
+                        <button class="btn btn-accent btn-lg" id="openAddProductModal">
+                            <i class="fas fa-plus"></i> Añadir Productos o Servicios
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="destino-info">
+                    <div class="destino-descripcion">
+                        <h2>Descripción</h2>
+                        <p id="destino-descripcion"></p>
+                    </div>
+                    
+                    <div class="destino-tags">
+                        <h3>Características</h3>
+                        <div id="destino-tags-container" class="tags-container">
+                            <span class="tag">Turismo</span>
+                            <span class="tag">Aventura</span>
+                            <span class="tag">Cultural</span>
+                        </div>
+                    </div>
+
+                    <div class="popularidad">
+                        <h3>Popularidad</h3>
+                        <h4>Número de Visitas</h4>
+                        <p id="destino-visitas"></p>
+                    </div>                      
+                    
+                    <div class="destino-meta">
+                        <div class="ubicacion">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="destino-ubicacion"></span>
+                        </div>
+                        <div class="rating">
+                            <div id="destino-estrellas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span id="destino-rating">4.0</span>
+                            <span>(<span id="destino-reviews">125</span>+ reseñas)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="destino-acciones">
+                        <button class="btn btn-primary btn-lg">
+                            <i class="fas fa-calendar-alt"></i> Reservar visita
+                        </button>
+                        <button class="btn btn-outline btn-lg">
+                            <i class="far fa-heart"></i> Guardar en favoritos
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de testimonios/calificaciones -->
+            <div class="testimonios-seccion">
+                <h2>Opiniones de Visitantes</h2>
+                <div class="testimonios-grid" id="testimonios-container">
+                    <div class="testimonio-card">
+                        <div class="testimonio-header">
+                            <div class="testimonio-avatar">CR</div>
+                            <div class="testimonio-info">
+                                <h4>Carlos Rodríguez</h4>
+                                <p>Bogotá</p>
+                            </div>
+                        </div>
+                        <div class="testimonio-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonio-texto">Una experiencia increíble, los guías son muy profesionales y conocen muy bien la historia del lugar.</p>
+                        <p class="testimonio-fecha">15/05/2023</p>
+                    </div>
+                    <div class="testimonio-card">
+                        <div class="testimonio-header">
+                            <div class="testimonio-avatar">ML</div>
+                            <div class="testimonio-info">
+                                <h4>María López</h4>
+                                <p>Cali</p>
+                            </div>
+                        </div>
+                        <div class="testimonio-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p class="testimonio-texto">Muy recomendable para familias, los niños disfrutaron mucho de la visita.</p>
+                        <p class="testimonio-fecha">22/06/2023</p>
+                    </div>
+                    <div class="testimonio-card">
+                        <div class="testimonio-header">
+                            <div class="testimonio-avatar">JP</div>
+                            <div class="testimonio-info">
+                                <h4>Juan Pérez</h4>
+                                <p>Medellín</p>
+                            </div>
+                        </div>
+                        <div class="testimonio-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p class="testimonio-texto">Excelente servicio y atención. Las vistas son espectaculares.</p>
+                        <p class="testimonio-fecha">10/07/2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para Añadir Productos o Servicios -->
+    <div class="modal-overlay" id="addProductModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Añadir Producto o Servicio</h3>
+                <button class="modal-close" id="closeAddProductModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formAddProduct">
+                    <div class="form-group">
+                        <label for="productName">Nombre del Producto:</label>
+                        <input type="text" id="productName" name="productName" placeholder="Ingresa el nombre del producto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Descripción:</label>
+                        <textarea id="productDescription" name="productDescription" rows="3" placeholder="Describe el producto o servicio"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Precio:</label>
+                        <input type="number" id="productPrice" name="productPrice" placeholder="0" min="0" step="0.01" required>
+                    </div>
+                    <input type="hidden" id="empresaId" value="1"> <!-- Valor de ejemplo para id_empresa -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-ghost" id="cancelAddProduct">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <img src="img/logo.png" alt="Logo">
+                        <span>Tourisme</span>
+                    </div>
+                    <p>Haz tu reserva de viajes con confianza para descubrir los maravillosos lugares del Valle de Aburrá</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#">Reservas</a></li>
+                        <li><a href="#">Rutas</a></li>
+                        <li><a href="#">Paquetes</a></li>
+                        <li><a href="#">Actividades</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Soporte</h3>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Tourisme. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

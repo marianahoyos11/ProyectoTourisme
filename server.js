@@ -1,5 +1,5 @@
 const express = require('express');
-const session = require('express-session');
+//const session = require('express-session');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -19,12 +19,12 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// Configurar sesiones
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}));
+// // Configurar sesiones
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: false
+// }));
 
 // Middleware de autenticación
 function isAuthenticated(req, res, next) {
@@ -41,11 +41,11 @@ app.use(express.static('public'));
 // Rutas
 app.use('/registro_conexion', registroRouter);
 app.use('/api/login', rutaLogin);
-app.use('/api/usuarios', isAuthenticated, usuariosRouter);
-app.use('/api/categorias', isAuthenticated, categoriasRouter);
-app.use('/api/destinos', isAuthenticated, destinosRouter);
-app.use('/api/empresas', isAuthenticated, empresasRoutes);
-app.use('/api/bitacora', isAuthenticated, bitacoraRoutes);
+app.use('/api/usuarios', usuariosRouter);
+app.use('/api/categorias', categoriasRouter);
+app.use('/api/destinos', destinosRouter);
+app.use('/api/empresas', empresasRoutes);
+app.use('/api/bitacora',  bitacoraRoutes);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'registro.html'));

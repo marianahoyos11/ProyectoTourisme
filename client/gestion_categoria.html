@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourisme - Gestion de categoria</title>
+    <link rel="stylesheet" href="css/styles_pagina.css">
+    <link rel="stylesheet" href="css/administrador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo">
+                <span>Tourisme</span>
+            </div>
+            <!-- <nav class="nav-desktop">
+                <ul>
+                    <li><a href="#usuarios_seccion">Usuarios</a></li>
+                    <li><a href="#categorias_seccion">Categorías</a></li>
+                    <li><a href="#destinos_seccion">Destinos</a></li>
+                    <li><a href="#empresas_seccion">Empresas</a></li>
+                    <li><a href="#auditoria_seccion">Auditoría</a></li>
+                </ul>
+            </nav> -->
+            <div class="auth-buttons">
+                <div class="admin-profile">
+                    <span>Admin</span>
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="auth-buttons">
+                    <a href="administrador.html">
+                        <button class="btn btn-primary">Volver</button>
+                    </a>
+                </div>   
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+  
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#usuarios_seccion">Usuarios</a></li>
+            <li><a href="#categorias_seccion">Categorías</a></li>
+            <li><a href="#destinos_seccion">Destinos</a></li>
+            <li><a href="#empresas_seccion">Empresas</a></li>
+            <li><a href="#auditoria_seccion">Auditoría</a></li>
+            <!-- <li><a href="index.html">Cerrar Sesión</a></li> -->
+        </ul>
+    </div>
+
+    <section class="categorias admin-section" id="categorias_seccion">
+        <div class="container">
+            <div class="section-header admin-header">
+                <h2>Gestión de Categorías Turísticas</h2>
+                <p>Administra las categorías de destinos turísticos</p>
+                <button class="btn btn-primary add-btn-categoria">
+                    <i class="fas fa-plus"></i> Añadir Categoría
+                </button>
+            </div>
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categorias-tbody">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+  
+    <!-- Modal de Categoría -->
+    <div id="modalCategoria" class="modal">
+        <div class="modal-content">
+            <span class="close close-categoria">&times;</span>
+            <h2 id="modalCategoriaTitulo">Añadir Categoría</h2>
+            <form id="formCategoria">
+            <label for="nombre_categoria">Nombre:</label>
+            <input type="text" id="nombre_categoria" name="nombre_categoria" required>
+        
+            <label for="descripcion_categoria">Descripción:</label>
+            <textarea id="descripcion_categoria" name="descripcion_categoria" required></textarea>
+        
+            <button type="submit" class="save-btn">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <img src="img/logo.png" alt="Logo">
+                        <span>Tourisme</span>
+                    </div>
+                    <p>Panel de administración para gestionar todos los aspectos de la plataforma Tourisme</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Acceso Rápido</h3>
+                    <ul>
+                        <li><a href="#usuarios_seccion">Usuarios</a></li>
+                        <li><a href="#categorias_seccion">Categorías</a></li>
+                        <li><a href="#destinos_seccion">Destinos</a></li>
+                        <li><a href="#empresas_seccion">Empresas</a></li>
+                        <li><a href="#reservas_seccion">Reservas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Soporte</h3>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Documentación</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Tourisme - Panel de Administración. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/categorias_crud.js"></script>
+</body>
+</html>

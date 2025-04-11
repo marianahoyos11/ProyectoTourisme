@@ -21,11 +21,10 @@
                     <li><a href="#">Contacto</a></li>
                 </ul>
             </nav>
-            <div class="logout-wrapper">
+            <div class="auth-buttons">
+                <span>Usuario</span>
                 <i class="fas fa-user user-icon"></i>
-                <a href="index.html">               
-                  <button class="btn btn-primary">Cerrar Sesión</button>
-                </a>
+                <button id="logoutBtn" class="btn btn-primary">Cerrar Sesión</button>
             </div>                                    
         </div>
         <button class="menu-toggle" id="menuToggle">
@@ -196,6 +195,8 @@
         </div>
     </footer>
 
+    <script src="js/logout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/home.js"></script>
 </body>
 </html>

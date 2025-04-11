@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourisme - Gestion de categoria</title>
+    <link rel="stylesheet" href="css/styles_pagina.css">
+    <link rel="stylesheet" href="css/administrador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo">
+                <span>Tourisme</span>
+            </div>
+            <!-- <nav class="nav-desktop">
+                <ul>
+                    <li><a href="#usuarios_seccion">Usuarios</a></li>
+                    <li><a href="#categorias_seccion">Categorías</a></li>
+                    <li><a href="#destinos_seccion">Destinos</a></li>
+                    <li><a href="#empresas_seccion">Empresas</a></li>
+                    <li><a href="#auditoria_seccion">Auditoría</a></li>
+                </ul>
+            </nav> -->
+            <div class="auth-buttons">
+                <div class="admin-profile">
+                    <span>Admin</span>
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="auth-buttons">
+                    <a href="administrador.html">
+                        <button class="btn btn-primary">Volver</button>
+                    </a>
+                </div>  
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+  
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#usuarios_seccion">Usuarios</a></li>
+            <li><a href="#categorias_seccion">Categorías</a></li>
+            <li><a href="#destinos_seccion">Destinos</a></li>
+            <li><a href="#empresas_seccion">Empresas</a></li>
+            <li><a href="#auditoria_seccion">Auditoría</a></li>
+            <!-- <li><a href="index.html">Cerrar Sesión</a></li> -->
+        </ul>
+    </div>
+
+    <section class="empresas admin-section" id="empresas_seccion">
+        <div class="container">
+            <div class="section-header admin-header">
+                <h2>Gestión de empresas</h2>
+                <p>Administra las empresas asociadas a la plataforma</p>
+                <div class="header-actions">
+                    <div class="filter-controls">
+                    </div>
+                    <button class="btn btn-primary add-btn-empresa">
+                        <i class="fas fa-plus"></i> Añadir Empresa
+                    </button>
+                </div>
+            </div>
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Tipo</th>
+                            <th>Horario apertura</th>
+                            <th>Horario cierre</th>
+                            <th>Telefono</th>
+                            <th>Usuario</th>
+                            <th>Destino</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="empresas-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Empresa -->
+    <div id="modalEmpresa" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close close-empresa">&times;</span>
+            <h2 id="modalEmpresaTitulo">Añadir Empresa</h2>
+            <form id="formEmpresa">
+                <label>Nombre:</label>
+                <input type="text" id="nombre_empresa" required>
+      
+                <label>Descripción:</label>
+                <textarea id="descripcion_empresa"></textarea>
+      
+                <label>Tipo:</label>
+                <select id="tipo_empresa" required>
+                    <option value="">Seleccione</option>
+                    <option value="Restaurante">Restaurante</option>
+                    <option value="Atracción">Atracción</option>
+                    <option value="Otro">Otro</option>
+                </select>
+      
+                <label>Horario de Apertura:</label>
+                <input type="datetime-local" id="horario_apertura_empresa">
+      
+                <label>Horario de Cierre:</label>
+                <input type="datetime-local" id="horario_cierre_empresa">
+      
+                <label>Teléfono:</label>
+                <input type="text" id="telefono_empresa">
+      
+                <label>Usuario:</label>
+                <select id="usuario_empresa" required>
+                    <!-- Opciones cargadas dinámicamente -->
+                </select>
+      
+                <label>Destino Turístico:</label>
+                <select id="destino_empresa" required>
+                    <!-- Opciones cargadas dinámicamente -->
+                </select>
+      
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo">
+                        <img src="img/logo.png" alt="Logo">
+                        <span>Tourisme</span>
+                    </div>
+                    <p>Panel de administración para gestionar todos los aspectos de la plataforma Tourisme</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Acceso Rápido</h3>
+                    <ul>
+                        <li><a href="#usuarios_seccion">Usuarios</a></li>
+                        <li><a href="#categorias_seccion">Categorías</a></li>
+                        <li><a href="#destinos_seccion">Destinos</a></li>
+                        <li><a href="#empresas_seccion">Empresas</a></li>
+                        <li><a href="#reservas_seccion">Reservas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Soporte</h3>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Documentación</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Tourisme - Panel de Administración. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/empresas_crud.js"></script>
+</body>
+</html>

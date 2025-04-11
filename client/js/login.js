@@ -3,7 +3,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
-    const errorDiv = document.getElementById('error-message');
 
     try {
         const response = await fetch('/api/login', {
@@ -17,22 +16,66 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            // Redirige según el rol
-            if (data.rol === 'usuario') {
-                window.location.href = 'home.html';
-            } else if (data.rol === 'negocio') {
-                window.location.href = 'empresa.html';
+            // GUARDAMOS NOMBRE Y ROL EN LOCALSTORAGE
+            localStorage.setItem('nombre', data.nombre);
+            localStorage.setItem('rol', data.rol);
+
+            // Mostrar alerta sin botones y redirigir automáticamente
+            let redirectUrl = data.rol === 'usuario' ? 'home.html' :
+                              data.rol === 'negocio' ? 'empresa.html' :
+                              data.rol === 'administrador' ? 'administrador.html' :
+                              null;
+
+            if (redirectUrl) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Bienvenido!',
+                    text: 'Inicio de sesión exitoso',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                });
+
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 2000);
             } else {
-                errorDiv.style.display = 'block';
-                errorDiv.textContent = 'Rol no reconocido.';
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Rol no reconocido',
+                    text: 'Por favor, contacta con soporte.'
+                });
             }
+
         } else {
-            errorDiv.style.display = 'block';
-            errorDiv.textContent = data.error || 'Error al iniciar sesión';
+            if (data.error === 'Usuario no encontrado') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Usuario no encontrado',
+                    text: '¿Deseas registrarte?',
+                    confirmButtonText: 'Ir al registro',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'registro.html';
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Credenciales inválidas',
+                    text: data.error || 'Correo o contraseña incorrectos'
+                });
+            }
         }
+
     } catch (error) {
         console.error('Error al enviar login:', error);
-        errorDiv.style.display = 'block';
-        errorDiv.textContent = 'Error de conexión con el servidor';
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de conexión',
+            text: 'No se pudo conectar con el servidor.'
+        });
     }
 });

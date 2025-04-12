@@ -3,7 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
-const connection = require('./server/database/database');
+const db = require('./server/database/database');
+const contenidoRutas = require('./server/routes/contenidoRutas');
 
 // Rutas
 const registroRouter = require('./server/routes/registro_conexion');
@@ -18,6 +19,8 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // // Configurar sesiones
 // app.use(session({
@@ -37,6 +40,8 @@ function isAuthenticated(req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(express.static('public'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 // Rutas
 app.use('/registro_conexion', registroRouter);
@@ -46,6 +51,7 @@ app.use('/api/categorias', categoriasRouter);
 app.use('/api/destinos', destinosRouter);
 app.use('/api/empresas', empresasRoutes);
 app.use('/api/bitacora',  bitacoraRoutes);
+app.use('/api/contenido', contenidoRutas);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'registro.html'));

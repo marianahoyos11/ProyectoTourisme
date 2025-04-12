@@ -15,8 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
       })
         .then(res => {
           if (res.ok) {
-            alert('Contenido agregado correctamente');
-            window.location.href = 'empresa.html'; // Redirige al terminar
+            // ✅ Éxito con SweetAlert2
+            Swal.fire({
+              icon: 'success',
+              title: '¡Contenido agregado!',
+              text: 'Tu publicación fue creada correctamente'
+            }).then(() => {
+              window.location.href = 'empresa.html'; // Redirige después de cerrar alerta
+            });
           } else {
             return res.text().then(text => {
               throw new Error(text || 'Error al guardar el contenido');
@@ -25,7 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => {
           console.error('Error:', err);
-          alert('Hubo un problema al guardar el contenido.');
+          // ❌ Error con SweetAlert2
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hubo un problema al guardar el contenido. Intenta más tarde.'
+          });
         });
     });
   });

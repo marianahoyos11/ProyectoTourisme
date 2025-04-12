@@ -55,4 +55,22 @@ router.post('/agregar_contenido', upload.single('imagen'), (req, res) => {
   });
 });
 
+// Ruta para listar contenidos
+router.get('/listar', (req, res) => {
+    const sql = `
+        SELECT c.*, cat.nombre AS nombre_categoria, d.nombre AS nombre_destino, e.nombre AS nombre_empresa
+        FROM contenido c
+        JOIN categoria_turistica cat ON c.id_categoria = cat.id_categoria
+        JOIN destino_turistico d ON c.id_destino = d.id_destino
+        JOIN empresa e ON c.id_empresa = e.id_empresa
+        `;
+  
+    db.query(sql, (err, results) => {
+      if (err) {
+        return res.status(500).json({ error: err });
+      }
+      res.json(results);
+    });
+  });
+
 module.exports = router;

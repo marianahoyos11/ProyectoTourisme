@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnAdd = document.querySelector(".add-btn-usuario");
   const spanCerrar = document.querySelector(".close-usuario");
 
-  // Mostrar usuarios al cargar
   cargarUsuarios();
 
   function cargarUsuarios() {
@@ -28,7 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
           `;
           tabla.appendChild(fila);
         });
-      });
+      })
+      // .catch(error => {
+      //   console.error("Error al cargar usuarios:", error);
+      //   Swal.fire("Error", "No se pudieron cargar los usuarios", "error");
+      // });
   }
 
   function asignarClaseRol(idRol) {
@@ -45,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return "Usuario";
   }
 
-  // Abrir modal para añadir
   btnAdd.addEventListener("click", () => {
     form.reset();
     form.dataset.id_usuario = "";
@@ -53,13 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.style.display = "block";
   });
 
-  // Cerrar modal
   spanCerrar.onclick = () => modal.style.display = "none";
   window.onclick = e => {
     if (e.target === modal) modal.style.display = "none";
   };
 
-  // Guardar usuario (crear o editar)
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -70,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const id = form.dataset.id_usuario;
-
     const url = id ? `/api/usuarios/${id}` : "/api/usuarios";
     const method = id ? "PUT" : "POST";
 
@@ -83,10 +82,18 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(() => {
       modal.style.display = "none";
       cargarUsuarios();
+      Swal.fire({
+        icon: "success",
+        title: id ? "Usuario actualizado" : "Usuario creado",
+        text: id ? "Los datos del usuario se actualizaron correctamente." : "El usuario fue creado con éxito.",
+      });
+    })
+    .catch(error => {
+      console.error("Error al guardar usuario:", error);
+      Swal.fire("Error", "No se pudo guardar el usuario", "error");
     });
   });
 
-  // Delegación para editar y eliminar
   tabla.addEventListener("click", function (e) {
     const fila = e.target.closest("tr");
 
@@ -111,11 +118,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // Eliminar
     if (e.target.closest(".delete-btn-usuario")) {
       const id = fila.cells[0].textContent;
-      if (confirm("¿Estás seguro de eliminar este usuario?")) {
-        fetch(`/api/usuarios/${id}`, { method: "DELETE" })
-          .then(res => res.json())
-          .then(() => cargarUsuarios());
-      }
+
+      Swal.fire({
+        title: "¿Eliminar usuario?",
+        text: "Esta acción no se puede deshacer.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
+      }).then(result => {
+        if (result.isConfirmed) {
+          fetch(`/api/usuarios/${id}`, { method: "DELETE" })
+            .then(res => res.json())
+            .then(() => {
+              cargarUsuarios();
+              Swal.fire("¡Eliminado!", "El usuario ha sido eliminado.", "success");
+            })
+            .catch(error => {
+              console.error("Error al eliminar usuario:", error);
+              Swal.fire("Error", "No se pudo eliminar el usuario", "error");
+            });
+        }
+      });
     }
   });
 

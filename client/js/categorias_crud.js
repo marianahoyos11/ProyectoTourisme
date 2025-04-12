@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
         tablaCategorias.appendChild(fila);
       });
 
-      // Agregar eventos a botones
+      // Botón editar
       document.querySelectorAll(".edit-btn-categoria").forEach(btn => {
-        btn.addEventListener("click", async (e) => {
+        btn.addEventListener("click", async () => {
           const id = btn.dataset.id;
           const res = await fetch(`/api/categorias/${id}`);
           const cat = await res.json();
@@ -59,21 +59,43 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
+      // Botón eliminar con SweetAlert2
       document.querySelectorAll(".delete-btn-categoria").forEach(btn => {
-        btn.addEventListener("click", async (e) => {
+        btn.addEventListener("click", async () => {
           const id = btn.dataset.id;
-          if (confirm("¿Estás seguro de eliminar esta categoría?")) {
+
+          const result = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+          });
+
+          if (result.isConfirmed) {
             await fetch(`/api/categorias/${id}`, { method: "DELETE" });
-            cargarCategorias();
+            await cargarCategorias();
+
+            Swal.fire({
+              icon: 'success',
+              title: '¡Eliminado!',
+              text: 'La categoría ha sido eliminada.'
+            });
           }
         });
       });
     } catch (err) {
       console.error("Error cargando categorías:", err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudieron cargar las categorías'
+      });
     }
   }
 
-  // Enviar formulario
+  // Enviar formulario (crear o editar)
   formCategoria.addEventListener("submit", async (e) => {
     e.preventDefault();
     const nombre = document.getElementById("nombre_categoria").value;
@@ -86,11 +108,23 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ nombre, descripcion })
         });
+
+        Swal.fire({
+          icon: 'success',
+          title: '¡Actualizado!',
+          text: 'La categoría fue actualizada correctamente.'
+        });
       } else {
         await fetch("/api/categorias", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ nombre, descripcion })
+        });
+
+        Swal.fire({
+          icon: 'success',
+          title: '¡Agregado!',
+          text: 'La categoría fue agregada correctamente.'
         });
       }
 
@@ -98,6 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
       cargarCategorias();
     } catch (err) {
       console.error("Error al guardar la categoría:", err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No se pudo guardar la categoría.'
+      });
     }
   });
 

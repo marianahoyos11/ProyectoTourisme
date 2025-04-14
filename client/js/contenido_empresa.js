@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
         .then(res => {
           if (res.ok) {
-            // ✅ Éxito con SweetAlert2
             Swal.fire({
               icon: 'success',
               title: '¡Contenido agregado!',
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => {
           console.error('Error:', err);
-          // ❌ Error con SweetAlert2
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

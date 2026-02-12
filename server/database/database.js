@@ -1,13 +1,13 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-    host: 'tourismedb2025.mysql.database.azure.com',
-    user: 'usuario',
+    host: 'localhost',
+    user: 'root',
     password: 'Alskdjfhg00*',
-    database: 'tourisme_db',
-    ssl: {
-        rejectUnauthorized: true
-    }
+    database: 'tourisme',
+    // ssl: {
+    //     rejectUnauthorized: true
+    // }
 });
 
 connection.connect((err) => {

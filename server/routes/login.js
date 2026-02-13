@@ -7,14 +7,14 @@ const router = express.Router();
 
 // Ruta para iniciar sesión
 router.post('/', (req, res) => {
-    const { correo, contrasena } = req.body;
+    const { email, contrasena } = req.body;
     
-    if (!correo || !contrasena) {
+    if (!email || !contrasena) {
         return res.status(400).json({ error: "Todos los campos son obligatorios." });
     }
 
     // Buscar usuario en la base de datos
-    connection.query('SELECT * FROM autenticacion WHERE correo = ?', [correo], async (err, results) => {
+    connection.query('SELECT * FROM autenticacion WHERE email = ?', [email], async (err, results) => {
         if (err) {
             console.error('Error en la consulta:', err);
             return res.status(500).json({ error: 'Error en el servidor' });
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 
         // Generar token JWT
         const token = jwt.sign(
-            { id_usuario: user.id_usuario, correo: user.correo },
+            { id_usuario: user.id_usuario, email: user.correo },
             process.env.JWT_SECRET || 'clave_secreta',
             { expiresIn: '2h' }
         );

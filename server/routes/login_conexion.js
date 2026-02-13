@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
             FROM autenticacion a
             INNER JOIN usuario u ON a.id_usuario = u.id_usuario
             INNER JOIN rol r ON u.id_rol = r.id_rol
-            WHERE a.correo = ?
+            WHERE a.email = ?
         `, [email]);
 
         if (rows.length === 0) {

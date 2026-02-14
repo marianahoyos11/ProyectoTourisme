@@ -6,9 +6,17 @@ const connection = require('../database/database');
 router.post('/', async (req, res) => {
     const { email, password } = req.body;
 
+    if (!email || !password) {
+        return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    }
+
     try {
         const [rows] = await connection.promise().query(`
-            SELECT a.id_usuario, a.contrasena_hash, r.nombre AS rol
+            SELECT 
+                u.id_usuario,
+                u.nombre,
+                a.contrasena_hash,
+                r.nombre AS rol
             FROM autenticacion a
             INNER JOIN usuario u ON a.id_usuario = u.id_usuario
             INNER JOIN rol r ON u.id_rol = r.id_rol
@@ -20,14 +28,21 @@ router.post('/', async (req, res) => {
         }
 
         const user = rows[0];
+
         const isMatch = await bcrypt.compare(password, user.contrasena_hash);
 
         if (!isMatch) {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
 
-        // Enviar respuesta con el rol del usuario
-        res.status(200).json({ message: 'Login exitoso', rol: user.rol });
+        console.log("Usuario logueado:", user.nombre);
+        console.log("Rol:", user.rol);
+
+        res.status(200).json({
+            message: 'Login exitoso',
+            nombre: user.nombre,
+            rol: user.rol.toLowerCase()
+        });
 
     } catch (error) {
         console.error('Error al iniciar sesión:', error);

@@ -1,7 +1,1101 @@
 create database tourisme;
 use tourisme;
 
-select * from Rol;
+select * from destinos_turisticos;
+select * from categoria_turistica;
+select * from ubicacion;
+
+CALL insertar_destino(1,'Parque Arví','Parque natural ideal para senderismo y picnic','Medellín','Medellín',1);
+
+CALL insertar_destino(1,'Cerro El Volador','Cerro tutelar con miradores y senderos ecológicos','Medellín','Medellín',1);
+
+CALL insertar_destino(1,'Parque Ecológico Piedras Blancas','Bosque natural con lagos y senderos','Medellín','Medellín',1);
+
+CALL insertar_destino(1,'Reserva Natural La Honda','Reserva natural con cascadas y biodiversidad','Medellín','Medellín',1);
+
+CALL insertar_destino(1,'Reserva Natural San Sebastián - La Castellana','Reserva ecológica urbana','Medellín','Medellín',1);
+
+CALL insertar_destino(1,'Bosque de Niebla San Sebastián - La Castellana','Bosque natural para senderismo y observación','Medellín','Medellín',1);
+
+
+CALL insertar_destino(2,'Mirador de Las Palmas','Vista panorámica de Medellín','Medellín','Medellín',1);
+
+CALL insertar_destino(2,'Mirador del Cielo','Mirador con vista panorámica urbana','Medellín','Medellín',1);
+
+CALL insertar_destino(2,'Mirador Cerro El Picacho','Uno de los puntos más altos de la ciudad','Medellín','Medellín',1);
+
+CALL insertar_destino(2,'Mirador Cerro de Las Tres Cruces','Mirador popular para deportistas','Medellín','Medellín',1);
+
+CALL insertar_destino(2,'Mirador La Asomadera','Mirador urbano tranquilo','Medellín','Medellín',1);
+
+CALL insertar_destino(2,'Mirador San Javier','Mirador con vista a la Comuna 13','Medellín','Medellín',1);
+
+
+CALL insertar_destino(3,'Museo de Antioquia Plaza Botero','Museo con obras de Fernando Botero','Medellín','Medellín',1);
+
+CALL insertar_destino(3,'Museo Casa de la Memoria','Museo histórico sobre el conflicto en Colombia','Medellín','Medellín',1);
+
+CALL insertar_destino(3,'Pueblito Paisa','Réplica de un pueblo tradicional antioqueño','Medellín','Medellín',1);
+
+CALL insertar_destino(3,'Catedral Basílica Metropolitana','Iglesia histórica de gran valor arquitectónico','Medellín','Medellín',1);
+
+CALL insertar_destino(3,'Centro Museo San Pedro','Cementerio museo con valor histórico','Medellín','Medellín',1);
+
+
+CALL insertar_destino(4,'Ciclovía Medellín','Espacios dominicales para ciclismo y deporte','Medellín','Medellín',1);
+
+CALL insertar_destino(4,'Ciclovía Vía Las Palmas','Ruta exigente para ciclistas','Medellín','Medellín',1);
+
+CALL insertar_destino(4,'Cerro de Las Tres Cruces','Senderismo con vista panorámica','Medellín','Medellín',1);
+
+CALL insertar_destino(4,'Patinaje Aeroparque Juan Pablo II','Espacio recreativo para patinaje','Medellín','Medellín',1);
+
+CALL insertar_destino(4,'Senderismo Cerro Pan de Azúcar','Caminata desafiante con vistas espectaculares','Medellín','Medellín',1);
+
+CALL insertar_destino(4,'Parque Comfama Arví','Parque con actividades al aire libre','Medellín','Medellín',1);
+
+CALL insertar_destino(4,'Rutas de Downhill Loma del Escobero','Rutas técnicas para ciclismo extremo','Medellín','Medellín',1);
+
+
+CALL insertar_destino(5,'Comuna 13','Destino turístico cultural con arte urbano','Medellín','Medellín',1);
+
+CALL insertar_destino(5,'Parque de los Pies Descalzos','Espacio urbano interactivo','Medellín','Medellín',1);
+
+CALL insertar_destino(5,'Parque Explora y Planetario','Ciencia y tecnología en un solo lugar','Medellín','Medellín',1);
+
+CALL insertar_destino(5,'Jardín Botánico','Pulmón verde de la ciudad','Medellín','Medellín',1);
+
+CALL insertar_destino(5,'Parque Norte','Parque de diversiones urbano','Medellín','Medellín',1);
+
+CALL insertar_destino(5,'Centro Cultural Moravia','Espacio cultural y comunitario','Medellín','Medellín',1);
+
+CALL consultar_destinos();
+
+
+
+CALL insertar_destino(1, 'Ecoparque La Romera',
+'Espacio natural protegido ideal para senderismo y avistamiento de flora y fauna.',
+'Sabaneta',
+'Vereda La Doctora',
+4);
+
+CALL insertar_destino(1, 'Parque Ecológico La Doctora',
+'Zona natural con senderos ecológicos y espacios de recreación al aire libre.',
+'Sabaneta',
+'Sector La Doctora',
+4);
+
+CALL insertar_destino(1, 'Senderos Naturales La Romera',
+'Rutas ecológicas para caminatas y contacto con la naturaleza.',
+'Sabaneta',
+'Montaña La Romera',
+4);
+
+
+CALL insertar_destino(2, 'Mirador de Sabaneta',
+'Punto panorámico con vista hacia el Valle de Aburrá.',
+'Sabaneta',
+'Zona alta del municipio',
+4);
+
+CALL insertar_destino(2, 'Mirador La Romera',
+'Mirador natural ubicado en la montaña La Romera.',
+'Sabaneta',
+'Vereda La Doctora',
+4);
+
+CALL insertar_destino(2, 'Mirador Alto de las Flores',
+'Espacio elevado con vista panorámica del municipio.',
+'Sabaneta',
+'Sector Alto de las Flores',
+4);
+
+
+CALL insertar_destino(3, 'Casa de la Cultura La Barquereña',
+'Espacio cultural para eventos artísticos y exposiciones.',
+'Sabaneta',
+'Parque Principal',
+4);
+
+CALL insertar_destino(3, 'Iglesia Santa Ana',
+'Templo religioso principal del municipio con valor histórico.',
+'Sabaneta',
+'Parque Principal',
+4);
+
+CALL insertar_destino(3, 'Biblioteca Pública Municipal',
+'Espacio cultural y educativo para la comunidad.',
+'Sabaneta',
+'Centro del municipio',
+4);
+
+
+CALL insertar_destino(4, 'Rutas de Senderismo La Romera',
+'Recorridos naturales ideales para caminatas ecológicas.',
+'Sabaneta',
+'Montaña La Romera',
+4);
+
+CALL insertar_destino(4, 'Ciclorrutas Sabaneta',
+'Rutas urbanas y rurales para práctica de ciclismo.',
+'Sabaneta',
+'Zona urbana',
+4);
+
+CALL insertar_destino(4, 'Unidad Deportiva Zona Sur',
+'Espacio para actividades deportivas y recreativas.',
+'Sabaneta',
+'Zona Sur',
+4);
+
+
+CALL insertar_destino(5, 'Parque Principal de Sabaneta',
+'Plaza central del municipio, punto de encuentro social.',
+'Sabaneta',
+'Centro',
+4);
+
+CALL insertar_destino(5, 'Parque Lineal La Doctora',
+'Espacio público para recreación y caminatas.',
+'Sabaneta',
+'Sector La Doctora',
+4);
+
+CALL insertar_destino(5, 'Unidad Deportiva Zona Sur',
+'Complejo deportivo con espacios recreativos urbanos.',
+'Sabaneta',
+'Zona Sur',
+4);
+
+select * from Destinos_Turisticos where id_ubicacion = 4;
+
+
+
+CALL insertar_destino(1, 'Cascada Salto del Ángel',
+'Cascada natural ubicada en zona rural ideal para senderismo.',
+'Envigado',
+'Zona rural',
+3);
+
+CALL insertar_destino(1, 'Parque Ecológico El Salado',
+'Reserva natural con senderos ecológicos y zonas verdes.',
+'Envigado',
+'Sector El Salado',
+3);
+
+CALL insertar_destino(1, 'Reserva Natural La Morena',
+'Espacio natural para caminatas y avistamiento de flora.',
+'Envigado',
+'Zona alta de Envigado',
+3);
+
+
+
+CALL insertar_destino(2, 'Mirador El Salado',
+'Mirador natural con vista panorámica del Valle de Aburrá.',
+'Envigado',
+'Sector El Salado',
+3);
+
+CALL insertar_destino(2, 'Mirador Alto de Palmas',
+'Mirador con vista hacia Medellín y el sur del Valle.',
+'Envigado',
+'Vía Las Palmas',
+3);
+
+CALL insertar_destino(2, 'Mirador La Catedral',
+'Punto elevado con vista panorámica y valor histórico.',
+'Envigado',
+'Zona alta',
+3);
+
+
+
+CALL insertar_destino(3, 'Casa Museo Otraparte',
+'Casa museo del escritor Fernando González.',
+'Envigado',
+'Barrio Otraparte',
+3);
+
+CALL insertar_destino(3, 'Parroquia Santa Gertrudis',
+'Iglesia principal del municipio con valor histórico.',
+'Envigado',
+'Parque Principal',
+3);
+
+CALL insertar_destino(3, 'Casa de la Cultura Miguel Uribe Restrepo',
+'Espacio cultural para eventos artísticos y formativos.',
+'Envigado',
+'Centro',
+3);
+
+
+CALL insertar_destino(4, 'Senderismo El Salado',
+'Rutas naturales para caminatas ecológicas.',
+'Envigado',
+'Sector El Salado',
+3);
+
+CALL insertar_destino(4, 'Ciclorrutas Envigado',
+'Rutas urbanas y rurales para ciclismo recreativo.',
+'Envigado',
+'Zona urbana',
+3);
+
+CALL insertar_destino(4, 'Canopy Parque El Salado',
+'Actividad de aventura en entorno natural.',
+'Envigado',
+'Sector El Salado',
+3);
+
+
+
+CALL insertar_destino(5, 'Parque Principal de Envigado',
+'Plaza central del municipio y punto de encuentro social.',
+'Envigado',
+'Centro',
+3);
+
+CALL insertar_destino(5, 'Parque Cultural Débora Arango',
+'Espacio cultural y artístico en zona urbana.',
+'Envigado',
+'Centro',
+3);
+
+CALL insertar_destino(5, 'Unidad Deportiva Sur de Envigado',
+'Complejo deportivo y recreativo urbano.',
+'Envigado',
+'Zona Sur',
+3);
+
+
+CALL insertar_destino(1, 'Cerro Quitasol',
+'Montaña emblemática ideal para senderismo y actividades ecológicas.',
+'Bello',
+'Zona rural',
+2);
+
+CALL insertar_destino(1, 'Parque Ecológico Cerro Quitasol',
+'Espacio natural con rutas ecológicas y miradores naturales.',
+'Bello',
+'Sector Quitasol',
+2);
+
+CALL insertar_destino(1, 'Humedal Piamonte',
+'Zona ambiental protegida con biodiversidad local.',
+'Bello',
+'Sector Piamonte',
+2);
+
+
+CALL insertar_destino(2, 'Mirador San Félix',
+'Mirador natural reconocido por su vista panorámica y deportes extremos.',
+'Bello',
+'Sector San Félix',
+2);
+
+CALL insertar_destino(2, 'Cerro Quitasol',
+'Punto elevado con vista panorámica del Valle de Aburrá.',
+'Bello',
+'Sector Quitasol',
+2);
+
+CALL insertar_destino(2, 'Mirador Altos de Niquía',
+'Mirador urbano con vista hacia el sur del municipio.',
+'Bello',
+'Altos de Niquía',
+2);
+
+
+
+CALL insertar_destino(3, 'Casa de la Cultura Cerro del Ángel',
+'Espacio cultural para actividades artísticas y educativas.',
+'Bello',
+'Centro',
+2);
+
+CALL insertar_destino(3, 'Iglesia Nuestra Señora del Rosario',
+'Templo histórico ubicado en el parque principal.',
+'Bello',
+'Parque Principal',
+2);
+
+CALL insertar_destino(3, 'Biblioteca Marco Fidel Suárez',
+'Espacio cultural y educativo del municipio.',
+'Bello',
+'Centro',
+2);
+
+
+CALL insertar_destino(4, 'Parapente San Félix',
+'Zona reconocida para práctica de parapente y deportes extremos.',
+'Bello',
+'Sector San Félix',
+2);
+
+CALL insertar_destino(4, 'Senderismo Cerro Quitasol',
+'Ruta ecológica ideal para caminatas y ejercicio al aire libre.',
+'Bello',
+'Sector Quitasol',
+2);
+
+CALL insertar_destino(4, 'Ciclomontañismo San Félix',
+'Rutas de montaña para ciclismo extremo.',
+'Bello',
+'Sector San Félix',
+2);
+
+
+CALL insertar_destino(5, 'Parque Principal de Bello',
+'Plaza central del municipio y punto de encuentro social.',
+'Bello',
+'Centro',
+2);
+
+CALL insertar_destino(5, 'El Callejón del Artesano',
+'Espacio cultural y comercial con artesanías locales.',
+'Bello',
+'Centro',
+2);
+
+CALL insertar_destino(5, 'Parque Tulio Ospina',
+'Complejo deportivo y recreativo urbano.',
+'Bello',
+'Sector Tulio Ospina',
+2);
+
+
+select * from Destinos_Turisticos where id_ubicacion = 2;
+
+
+CALL insertar_destino(1, 'Parque Ecológico El Porvenir',
+'Espacio natural con zonas verdes y senderos ecológicos.',
+'Itagüí',
+'Sector El Porvenir',
+5);
+
+CALL insertar_destino(1, 'Cerro Manzanillo',
+'Zona natural ideal para caminatas y actividades ecológicas.',
+'Itagüí',
+'Zona rural',
+5);
+
+CALL insertar_destino(1, 'Quebrada Doña María',
+'Entorno natural con biodiversidad y senderos.',
+'Itagüí',
+'Sector rural',
+5);
+
+
+CALL insertar_destino(2, 'Mirador El Porvenir',
+'Punto elevado con vista panorámica del municipio.',
+'Itagüí',
+'Sector El Porvenir',
+5);
+
+CALL insertar_destino(2, 'Mirador Alto de la Cruz',
+'Mirador natural con vista hacia el sur del Valle de Aburrá.',
+'Itagüí',
+'Zona alta',
+5);
+
+CALL insertar_destino(2, 'Mirador Ditaires',
+'Mirador urbano cercano al complejo deportivo.',
+'Itagüí',
+'Sector Ditaires',
+5);
+
+
+CALL insertar_destino(3, 'Casa Museo Ditaires',
+'Espacio cultural con exposiciones artísticas.',
+'Itagüí',
+'Sector Ditaires',
+5);
+
+CALL insertar_destino(3, 'Parroquia Nuestra Señora del Rosario',
+'Iglesia histórica ubicada en el parque principal.',
+'Itagüí',
+'Centro',
+5);
+
+CALL insertar_destino(3, 'Casa de la Cultura de Itagüí',
+'Centro cultural con actividades artísticas y educativas.',
+'Itagüí',
+'Centro',
+5);
+
+
+CALL insertar_destino(4, 'Complejo Deportivo Ditaires',
+'Escenario deportivo para múltiples disciplinas.',
+'Itagüí',
+'Sector Ditaires',
+5);
+
+CALL insertar_destino(4, 'Ciclorrutas Itagüí',
+'Rutas urbanas para ciclismo recreativo.',
+'Itagüí',
+'Zona urbana',
+5);
+
+CALL insertar_destino(4, 'Senderismo Cerro Manzanillo',
+'Ruta ecológica para caminatas y ejercicio.',
+'Itagüí',
+'Zona rural',
+5);
+
+
+CALL insertar_destino(5, 'Acuaparque Ditaires',
+'Parque acuático recreativo para toda la familia.',
+'Itagüí',
+'Sector Ditaires',
+5);
+
+CALL insertar_destino(5, 'Parque Principal de Itagüí',
+'Plaza central del municipio y punto de encuentro social.',
+'Itagüí',
+'Centro',
+5);
+
+CALL insertar_destino(5, 'Parque Obrero',
+'Espacio público urbano para recreación y eventos.',
+'Itagüí',
+'Centro',
+5);
+
+
+select * from Destinos_Turisticos where id_ubicacion = 5;
+
+
+CALL insertar_destino(1, 'Reserva Natural El Romeral',
+'Zona natural protegida ideal para senderismo y observación de flora y fauna.',
+'La Estrella',
+'Sector El Romeral',
+6);
+
+CALL insertar_destino(1, 'Parque Ecológico San Miguel',
+'Espacio natural con senderos y zonas verdes para actividades ecológicas.',
+'La Estrella',
+'Zona rural',
+6);
+
+CALL insertar_destino(1, 'Quebrada La Estrella',
+'Entorno natural con biodiversidad y rutas ecológicas.',
+'La Estrella',
+'Zona rural',
+6);
+
+
+CALL insertar_destino(2, 'Mirador El Romeral',
+'Punto panorámico con vista al sur del Valle de Aburrá.',
+'La Estrella',
+'Sector El Romeral',
+6);
+
+CALL insertar_destino(2, 'Mirador La Tablaza',
+'Mirador natural con vista hacia las montañas del municipio.',
+'La Estrella',
+'Sector La Tablaza',
+6);
+
+CALL insertar_destino(2, 'Mirador Alto de San Miguel',
+'Mirador natural con paisaje rural y vista panorámica.',
+'La Estrella',
+'Zona rural',
+6);
+
+
+CALL insertar_destino(3, 'Parroquia Nuestra Señora del Rosario',
+'Iglesia histórica ubicada en el parque principal del municipio.',
+'La Estrella',
+'Centro',
+6);
+
+CALL insertar_destino(3, 'Casa de la Cultura Francisco Carrillo',
+'Espacio cultural con actividades artísticas y educativas.',
+'La Estrella',
+'Centro',
+6);
+
+CALL insertar_destino(3, 'Centro Cultural La Estrella',
+'Lugar destinado a exposiciones y eventos culturales.',
+'La Estrella',
+'Centro',
+6);
+
+
+CALL insertar_destino(4, 'Senderismo El Romeral',
+'Ruta ecológica ideal para caminatas y contacto con la naturaleza.',
+'La Estrella',
+'Sector El Romeral',
+6);
+
+CALL insertar_destino(4, 'Ciclorrutas La Estrella',
+'Rutas urbanas y rurales para ciclismo recreativo.',
+'La Estrella',
+'Zona urbana y rural',
+6);
+
+CALL insertar_destino(4, 'Parapente La Tablaza',
+'Zona cercana utilizada para deportes aéreos y aventura.',
+'La Estrella',
+'Sector La Tablaza',
+6);
+
+
+CALL insertar_destino(5, 'Parque Principal La Estrella',
+'Plaza central del municipio y punto de encuentro social.',
+'La Estrella',
+'Centro',
+6);
+
+CALL insertar_destino(5, 'Parque La Tablaza',
+'Espacio urbano para recreación familiar.',
+'La Estrella',
+'Sector La Tablaza',
+6);
+
+CALL insertar_destino(5, 'Parque San Agustín',
+'Zona pública con áreas verdes y espacios recreativos.',
+'La Estrella',
+'Zona urbana',
+6);
+
+select * from Destinos_Turisticos where id_ubicacion = 6;
+
+DELETE FROM destinos_turisticos WHERE id_destino = 103;
+DELETE FROM destinos_turisticos WHERE id_destino = 104;
+DELETE FROM destinos_turisticos WHERE id_destino = 105;
+
+CALL insertar_destino(1, 'Reserva Natural San Miguel',
+'Zona natural protegida ideal para senderismo y contacto con la naturaleza.',
+'Caldas',
+'Zona rural',
+7);
+
+CALL insertar_destino(1, 'Cerro La Cruz',
+'Montaña natural con rutas ecológicas y espacios verdes.',
+'Caldas',
+'Zona alta',
+7);
+
+CALL insertar_destino(1, 'Quebrada La Miel',
+'Entorno natural con senderos y biodiversidad local.',
+'Caldas',
+'Sector rural',
+7);
+
+
+CALL insertar_destino(2, 'Mirador La Cruz',
+'Punto panorámico con vista hacia el sur del Valle de Aburrá.',
+'Caldas',
+'Zona alta',
+7);
+
+CALL insertar_destino(2, 'Mirador Alto de Minas',
+'Mirador natural con paisaje montañoso.',
+'Caldas',
+'Vía Alto de Minas',
+7);
+
+CALL insertar_destino(2, 'Mirador Vereda La Corrala',
+'Mirador rural con vista panorámica del municipio.',
+'Caldas',
+'Vereda La Corrala',
+7);
+
+
+CALL insertar_destino(3, 'Parroquia Nuestra Señora de las Mercedes',
+'Iglesia principal del municipio con valor histórico.',
+'Caldas',
+'Parque Principal',
+7);
+
+CALL insertar_destino(3, 'Casa de la Cultura de Caldas',
+'Espacio cultural para actividades artísticas y educativas.',
+'Caldas',
+'Centro',
+7);
+
+CALL insertar_destino(3, 'Biblioteca Pública Municipal de Caldas',
+'Espacio educativo y cultural para la comunidad.',
+'Caldas',
+'Centro',
+7);
+
+
+CALL insertar_destino(4, 'Senderismo Cerro La Cruz',
+'Ruta ecológica para caminatas y ejercicio al aire libre.',
+'Caldas',
+'Zona alta',
+7);
+
+CALL insertar_destino(4, 'Ciclorrutas Caldas',
+'Rutas rurales ideales para ciclismo recreativo.',
+'Caldas',
+'Zona urbana y rural',
+7);
+
+CALL insertar_destino(4, 'Rutas de Motociclismo Alto de Minas',
+'Trayecto montañoso frecuentado para turismo en moto.',
+'Caldas',
+'Vía Alto de Minas',
+7);
+
+
+CALL insertar_destino(5, 'Parque Principal de Caldas',
+'Plaza central del municipio y punto de encuentro social.',
+'Caldas',
+'Centro',
+7);
+
+CALL insertar_destino(5, 'Parque Santander',
+'Espacio público urbano para recreación familiar.',
+'Caldas',
+'Centro',
+7);
+
+CALL insertar_destino(5, 'Unidad Deportiva de Caldas',
+'Complejo deportivo y recreativo del municipio.',
+'Caldas',
+'Zona urbana',
+7);
+
+
+
+CALL insertar_destino(1, 'Cerro El Umbí',
+'Zona natural ideal para senderismo y actividades ecológicas.',
+'Copacabana',
+'Zona rural',
+8);
+
+CALL insertar_destino(1, 'Reserva Natural La Veta',
+'Espacio natural con senderos y biodiversidad local.',
+'Copacabana',
+'Sector rural',
+8);
+
+CALL insertar_destino(1, 'Quebrada Piedras Blancas',
+'Entorno natural con vegetación y rutas ecológicas.',
+'Copacabana',
+'Zona rural',
+8);
+
+
+CALL insertar_destino(2, 'Mirador El Umbí',
+'Punto panorámico con vista al Valle de Aburrá.',
+'Copacabana',
+'Zona alta',
+8);
+
+CALL insertar_destino(2, 'Mirador La Veta',
+'Mirador natural con vista hacia las montañas del municipio.',
+'Copacabana',
+'Sector La Veta',
+8);
+
+CALL insertar_destino(2, 'Mirador Alto de la Virgen',
+'Mirador rural con paisaje montañoso y vista panorámica.',
+'Copacabana',
+'Zona rural',
+8);
+
+
+CALL insertar_destino(3, 'Parroquia Nuestra Señora de la Asunción',
+'Iglesia principal del municipio con valor histórico.',
+'Copacabana',
+'Parque Principal',
+8);
+
+CALL insertar_destino(3, 'Casa de la Cultura de Copacabana',
+'Espacio cultural para actividades artísticas y educativas.',
+'Copacabana',
+'Centro',
+8);
+
+CALL insertar_destino(3, 'Biblioteca Pública Municipal de Copacabana',
+'Espacio cultural y educativo para la comunidad.',
+'Copacabana',
+'Centro',
+8);
+
+
+CALL insertar_destino(4, 'Senderismo Cerro El Umbí',
+'Ruta ecológica ideal para caminatas y contacto con la naturaleza.',
+'Copacabana',
+'Zona rural',
+8);
+
+CALL insertar_destino(4, 'Ciclomontañismo La Veta',
+'Rutas de montaña para ciclismo extremo.',
+'Copacabana',
+'Sector La Veta',
+8);
+
+CALL insertar_destino(4, 'Rutas Ecoturísticas Copacabana',
+'Recorridos rurales para turismo de aventura.',
+'Copacabana',
+'Zona rural',
+8);
+
+
+CALL insertar_destino(5, 'Parque Principal de Copacabana',
+'Plaza central del municipio y punto de encuentro social.',
+'Copacabana',
+'Centro',
+8);
+
+CALL insertar_destino(5, 'Parque La Asunción',
+'Espacio público urbano para recreación familiar.',
+'Copacabana',
+'Centro',
+8);
+
+CALL insertar_destino(5, 'Unidad Deportiva Copacabana',
+'Complejo deportivo y recreativo del municipio.',
+'Copacabana',
+'Zona urbana',
+8);
+
+select * from Destinos_Turisticos where id_ubicacion = 8;
+
+
+CALL insertar_destino(1, 'Cerro Las Baldías',
+'Zona natural ideal para senderismo y actividades ecológicas.',
+'Girardota',
+'Zona rural',
+9);
+
+CALL insertar_destino(1, 'Reserva Natural El Totumo',
+'Espacio natural con senderos y biodiversidad local.',
+'Girardota',
+'Sector rural',
+9);
+
+CALL insertar_destino(1, 'Quebrada El Salado',
+'Entorno natural con vegetación y rutas ecológicas.',
+'Girardota',
+'Zona rural',
+9);
+
+
+CALL insertar_destino(2, 'Mirador Las Baldías',
+'Punto panorámico con vista al norte del Valle de Aburrá.',
+'Girardota',
+'Zona alta',
+9);
+
+CALL insertar_destino(2, 'Mirador El Totumo',
+'Mirador natural con vista hacia las montañas del municipio.',
+'Girardota',
+'Sector rural',
+9);
+
+CALL insertar_destino(2, 'Mirador Alto del Norte',
+'Mirador rural con paisaje montañoso y vista panorámica.',
+'Girardota',
+'Zona alta',
+9);
+
+CALL insertar_destino(3, 'Parroquia Nuestra Señora del Rosario',
+'Iglesia principal del municipio con valor histórico.',
+'Girardota',
+'Parque Principal',
+9);
+
+CALL insertar_destino(3, 'Casa de la Cultura de Girardota',
+'Espacio cultural para actividades artísticas y educativas.',
+'Girardota',
+'Centro',
+9);
+
+CALL insertar_destino(3, 'Biblioteca Pública Municipal de Girardota',
+'Espacio cultural y educativo para la comunidad.',
+'Girardota',
+'Centro',
+9);
+
+
+CALL insertar_destino(4, 'Senderismo Cerro Las Baldías',
+'Ruta ecológica ideal para caminatas y contacto con la naturaleza.',
+'Girardota',
+'Zona rural',
+9);
+
+CALL insertar_destino(4, 'Ciclomontañismo Girardota',
+'Rutas de montaña para ciclismo recreativo.',
+'Girardota',
+'Zona rural',
+9);
+
+CALL insertar_destino(4, 'Rutas Ecoturísticas Girardota',
+'Recorridos rurales para turismo de aventura.',
+'Girardota',
+'Zona rural',
+9);
+
+CALL insertar_destino(5, 'Parque Principal de Girardota',
+'Plaza central del municipio y punto de encuentro social.',
+'Girardota',
+'Centro',
+9);
+
+CALL insertar_destino(5, 'Parque Las Acacias',
+'Espacio público urbano para recreación familiar.',
+'Girardota',
+'Centro',
+9);
+
+CALL insertar_destino(5, 'Unidad Deportiva Girardota',
+'Complejo deportivo y recreativo del municipio.',
+'Girardota',
+'Zona urbana',
+9);
+
+
+
+
+CALL insertar_destino(1, 'Charcos de Barbosa',
+'Pozos naturales ideales para disfrutar de actividades recreativas en entorno natural.',
+'Barbosa',
+'Zona rural',
+10);
+
+CALL insertar_destino(1, 'Reserva Natural La Peña',
+'Espacio natural con senderos ecológicos y biodiversidad.',
+'Barbosa',
+'Sector rural',
+10);
+
+CALL insertar_destino(1, 'Quebrada La Herradura',
+'Entorno natural con vegetación y rutas ecológicas.',
+'Barbosa',
+'Zona rural',
+10);
+
+
+CALL insertar_destino(2, 'Mirador La Peña',
+'Punto panorámico con vista hacia el norte del Valle de Aburrá.',
+'Barbosa',
+'Zona alta',
+10);
+
+CALL insertar_destino(2, 'Mirador Alto del Hatillo',
+'Mirador natural con paisaje montañoso.',
+'Barbosa',
+'Vereda El Hatillo',
+10);
+
+CALL insertar_destino(2, 'Mirador Charcos de Barbosa',
+'Mirador cercano a zona natural y turística.',
+'Barbosa',
+'Zona rural',
+10);
+
+
+CALL insertar_destino(3, 'Parroquia San Antonio de Padua',
+'Iglesia principal del municipio con valor histórico.',
+'Barbosa',
+'Parque Principal',
+10);
+
+CALL insertar_destino(3, 'Casa de la Cultura de Barbosa',
+'Espacio cultural para actividades artísticas y educativas.',
+'Barbosa',
+'Centro',
+10);
+
+CALL insertar_destino(3, 'Biblioteca Pública Municipal de Barbosa',
+'Espacio cultural y educativo para la comunidad.',
+'Barbosa',
+'Centro',
+10);
+
+
+CALL insertar_destino(4, 'Tubing en el Río Porce',
+'Actividad recreativa acuática en el río.',
+'Barbosa',
+'Zona rural',
+10);
+
+CALL insertar_destino(4, 'Senderismo La Peña',
+'Ruta ecológica ideal para caminatas y contacto con la naturaleza.',
+'Barbosa',
+'Zona alta',
+10);
+
+CALL insertar_destino(4, 'Ciclomontañismo Barbosa',
+'Rutas rurales ideales para ciclismo recreativo.',
+'Barbosa',
+'Zona rural',
+10);
+
+
+CALL insertar_destino(5, 'Parque Principal de Barbosa',
+'Plaza central del municipio y punto de encuentro social.',
+'Barbosa',
+'Centro',
+10);
+
+CALL insertar_destino(5, 'Parque Diego Echavarría',
+'Espacio público urbano para recreación familiar.',
+'Barbosa',
+'Centro',
+10);
+
+CALL insertar_destino(5, 'Unidad Deportiva Barbosa',
+'Complejo deportivo y recreativo del municipio.',
+'Barbosa',
+'Zona urbana',
+10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CALL insertar_destino(
+1,
+'Parque Arví',
+'Ideal para senderismo y picnic',
+'Medellín',
+'Santa Elena',
+1
+);
+
+CALL insertar_destino(
+2,
+'Mirador Las Palmas',
+'Vista panorámica de la ciudad',
+'Medellín',
+'Vía Las Palmas',
+1
+);
+
+CALL insertar_destino(
+3,
+'Museo de Antioquia',
+'Exhibe obras de Fernando Botero',
+'Medellín',
+'Centro',
+1
+);
+
+
+
+-- INSERTAR DATOS TABLA UBICACIONES --
+call sp_insertar_ubicacion('Medellín');
+call sp_insertar_ubicacion('Bello');
+call sp_insertar_ubicacion('Envigado');
+call sp_insertar_ubicacion('Sabaneta');
+call sp_insertar_ubicacion('Itagüí');
+call sp_insertar_ubicacion('La Estrella');
+call sp_insertar_ubicacion('Caldas');
+call sp_insertar_ubicacion('Copacabana');
+call sp_insertar_ubicacion('Girardota');
+call sp_insertar_ubicacion('Barbosa');
+
+CALL consultar_categorias();
+
+
+
+
+
+CALL insertar_categoria_turistica(
+'Parques y Reservas',
+'Espacios naturales protegidos y zonas verdes'
+);
+
+CALL insertar_categoria_turistica(
+'Miradores',
+'Lugares con vistas panorámicas del Valle de Aburrá'
+);
+
+CALL insertar_categoria_turistica(
+'Museos y Cultura',
+'Espacios culturales e históricos'
+);
+
+CALL insertar_categoria_turistica(
+'Actividades y Aventura',
+'Experiencias recreativas y deportivas'
+);
+
+CALL insertar_categoria_turistica(
+'Plazas y Parques Urbanos',
+'Espacios públicos dentro de la ciudad'
+);
+
+
+select id_ubicacion, nombre
+from ubicacion
+order by id_ubicacion ASC;
+
+DELETE FROM autenticacion WHERE id_usuario = 3;
+DELETE FROM usuario WHERE id_usuario = 3;
+
+UPDATE rol 
+SET nombre = 'Usuario'
+WHERE nombre = 'Turista';
+
+ALTER TABLE autenticacion CHANGE correo email VARCHAR(255);
+
+DELETE FROM autenticacion 
+WHERE email = 'marianahm1092@gmail.com';
+
+DELETE FROM usuario 
+WHERE email = 'marianahm1092@gmail.com';
+
+alter table Usuario
+add column email varchar(150) not null unique,
+add column password varchar(50) not null,
+add column fecha_nacimiento date,
+add column genero varchar(20),
+add column nacionalidad varchar(50)
+;
+
+ALTER TABLE usuario DROP COLUMN password;
 
 update Rol
 set nombre = 'Turista'
@@ -48,6 +1142,19 @@ fecha_expiracion datetime not null,
 foreign key (id_usuario) references Usuario(id_usuario) on delete cascade
 );
 
+
+create table Ubicacion(
+id_ubicacion int primary key auto_increment,
+nombre varchar(100) unique not null
+);
+
+alter table destinos_turisticos
+add column id_ubicacion int;
+
+alter table destinos_turisticos
+add constraint fk_destino_ubicacion
+foreign key(id_ubicacion)references Ubicacion(id_ubicacion)
+on delete cascade;
 
 -- TABLA DE CATEGORIAS TURISTICAS --
 create table Categoria_Turistica(
@@ -197,6 +1304,10 @@ create table Contenido(
 );
 
 
+
+-- 
+
+
 -- ---------------------------------------------------------------------------------------------------------- --
 
 
@@ -256,7 +1367,68 @@ grant select on tourisme.pago to 'usuario'@'localhost';
 -- -----------------------------INICIO DE PROCEDINIENTOS ALMACENADOS ------------------------------------------ --
 
 
--- PROCEDIMIENTOS ALMACENADOS TABLA USUARIO ACTUALIZADA --
+
+-- ----------------------------------------------------------------------------------------------------- --
+-- PROCEDIMIENTOS ALMACENADOS TABLA UBICACIÓN --
+-- INSERTAR UBICACIÓN --
+
+DELIMITER //
+
+CREATE PROCEDURE sp_insertar_ubicacion(
+    IN p_nombre VARCHAR(100)
+)
+BEGIN
+    INSERT INTO Ubicacion (nombre)
+    VALUES (p_nombre);
+END //
+
+DELIMITER ;
+
+
+
+-- EDITAR UBICACION --
+DELIMITER //
+
+CREATE PROCEDURE sp_actualizar_ubicacion(
+    IN p_id INT,
+    IN p_nombre VARCHAR(100)
+)
+BEGIN
+    UPDATE Ubicacion
+    SET nombre = p_nombre
+    WHERE id_ubicacion = p_id;
+END //
+
+DELIMITER ;
+
+-- ELIMINARF UBICACIÓN --
+
+DELIMITER //
+
+CREATE PROCEDURE sp_eliminar_ubicacion(
+    IN p_id INT
+)
+BEGIN
+    DELETE FROM Ubicacion
+    WHERE id_ubicacion = p_id;
+END //
+
+DELIMITER ;
+
+-- LISTAR UBICACIONES --
+DELIMITER //
+
+CREATE PROCEDURE sp_listar_ubicaciones()
+BEGIN
+    SELECT * FROM Ubicacion
+    ORDER BY nombre ASC;
+END //
+
+DELIMITER ;
+
+
+
+-- PROCEDIMIENTOS ALMACENADOS TABLA USUARIO --
 -- INSERTAR USUARIO --
 
 DELIMITER //
@@ -659,14 +1831,22 @@ begin
 end //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS consultar_categorias;
+
+CALL consultar_categorias();
+
 -- CONSULTAR EN GENERAL --
 DELIMITER //
-create procedure consultar_categorias()
-begin
-    -- retornar todas las categorías
-    select * from Categoria_Turistica;
-end //
+
+CREATE PROCEDURE consultar_categorias()
+BEGIN
+    SELECT id_categoria, nombre, descripcion
+    FROM Categoria_Turistica
+    ORDER BY nombre ASC;
+END //
+
 DELIMITER ;
+
 
 
 -- ELIMINAR -
@@ -692,54 +1872,75 @@ DELIMITER ;
 -- PROCEDIMIENTOS ALMACENADOS TABLA DESTINO TURISTICO --
 -- INSERTAR DESTINO --
 DELIMITER //
-create procedure insertar_destino(
-	in p_id_categoria int,
-    in p_nombre varchar (100),
-    in p_descripcion text,
-    in p_ciudad varchar(100),
-    in p_direccion varchar(100)
+
+CREATE PROCEDURE insertar_destino(
+    IN p_id_categoria INT,
+    IN p_nombre VARCHAR(100),
+    IN p_descripcion TEXT,
+    IN p_ciudad VARCHAR(100),
+    IN p_direccion VARCHAR(100),
+    IN p_id_ubicacion INT
 )
-begin
-	insert into Destinos_Turisticos(id_categoria, nombre, descripcion, ciudad, direccion)
-    values(p_id_categoria,p_nombre, p_descripcion, p_ciudad, p_direccion);
-end //
+BEGIN
+    INSERT INTO Destinos_Turisticos
+    (id_categoria, nombre, descripcion, ciudad, direccion, id_ubicacion)
+    VALUES
+    (p_id_categoria, p_nombre, p_descripcion, p_ciudad, p_direccion, p_id_ubicacion);
+END //
+
 DELIMITER ;
 
--- CONSULTAR DESTINO POR ID --
+
+-- CONSULTAR DESTINOS --
 DELIMITER //
-create procedure consultar_destino_id(
-	in p_id_destino int
-)
-begin
-	select * from Destinos_Turisticos where id_destino = p_id_destino;
-end //
+
+CREATE PROCEDURE consultar_destinos()
+BEGIN
+    SELECT 
+        d.id_destino,
+        d.nombre,
+        d.descripcion,
+        d.ciudad,
+        d.direccion,
+        c.nombre AS categoria,
+        u.nombre AS ubicacion
+    FROM Destinos_Turisticos d
+    INNER JOIN Categoria_Turistica c ON d.id_categoria = c.id_categoria
+    INNER JOIN Ubicacion u ON d.id_ubicacion = u.id_ubicacion
+    ORDER BY d.nombre ASC;
+END //
+
 DELIMITER ;
 
--- CONSULTAR DESTINO EN GENERAL --
-DELIMITER //
-create procedure consultar_destinos()
-begin
-	select * from  Destinos_Turisticos;
-end //
-DELIMITER ;
+CALL consultar_destinos();
+
+
 
 -- ACTUALIZAR DESTINO ACTUALIZADO --
 DELIMITER //
-create procedure actualizar_destino(
-	in p_id_destino int,
-    in p_id_categoria int,
-    in p_nombre varchar(100),
-    in p_descripcion text,
-    in p_ciudad varchar(100),
-    in p_direccion varchar(100)
+
+CREATE PROCEDURE actualizar_destino(
+    IN p_id_destino INT,
+    IN p_id_categoria INT,
+    IN p_nombre VARCHAR(100),
+    IN p_descripcion TEXT,
+    IN p_ciudad VARCHAR(100),
+    IN p_direccion VARCHAR(100),
+    IN p_id_ubicacion INT
 )
-begin
-	update Destinos_Turisticos
-    set id_categoria = p_id_categoria, nombre = p_nombre, descripcion = p_descripcion,
-		ciudad = p_ciudad, direccion = p_direccion
-	where id_destino = p_id_destino;
-end //
+BEGIN
+    UPDATE Destinos_Turisticos
+    SET id_categoria = p_id_categoria,
+        nombre = p_nombre,
+        descripcion = p_descripcion,
+        ciudad = p_ciudad,
+        direccion = p_direccion,
+        id_ubicacion = p_id_ubicacion
+    WHERE id_destino = p_id_destino;
+END //
+
 DELIMITER ;
+
 
 -- ELIMINAR DESTINO --
 DELIMITER //
@@ -750,6 +1951,11 @@ begin
 	delete from Destinos_Turisticos where id_destino = p_id_destino;
 end //
 DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS insertar_destino;
+DROP PROCEDURE IF EXISTS actualizar_destino;
+DROP PROCEDURE IF EXISTS consultar_destinos;
 
 
 -- ----------------------------------------------------------------------------------------------------------- --

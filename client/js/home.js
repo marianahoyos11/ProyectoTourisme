@@ -769,24 +769,18 @@ function renderizarDestinos(lista) {
     const card = `
       <div class="destino-card">
         <div class="destino-img">
-          <img src="${destino.imagen || 'img/default.jpg'}" 
-               alt="${destino.nombre}">
+          <img src="${destino.imagen || 'img/default.jpg'}" alt="${destino.nombre}">
         </div>
-
         <div class="destino-content">
           <h3>${destino.nombre}</h3>
-
           <div class="ubicacion">
             <i class="fas fa-map-marker-alt"></i>
             <span>${destino.ciudad}</span>
           </div>
-
           <p>${destino.descripcion || ''}</p>
-
           <div class="destino-footer">
-            <a href="detalle.html?id=${destino.id_destino}" 
-               class="btn btn-primary">
-              Ver detalles
+            <a href="/destino_tarjeta.html?id=${destino.id_destino}">
+              <button class="btn btn-primary">Ver detalles</button>
             </a>
           </div>
         </div>
@@ -795,6 +789,7 @@ function renderizarDestinos(lista) {
     contenedor.innerHTML += card
   })
 }
+
 
 
 // FILTRAR DESTINOS EN EL HTML //

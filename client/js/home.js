@@ -769,17 +769,25 @@ function renderizarDestinos(lista) {
     const card = `
       <div class="destino-card">
         <div class="destino-img">
-          <img src="${destino.imagen || 'img/default.jpg'}" alt="${destino.nombre}">
+          <img src="${destino.imagen || 'img/default.jpg'}" 
+               alt="${destino.nombre}">
         </div>
+
         <div class="destino-content">
           <h3>${destino.nombre}</h3>
+
           <div class="ubicacion">
             <i class="fas fa-map-marker-alt"></i>
             <span>${destino.ciudad}</span>
           </div>
+
           <p>${destino.descripcion || ''}</p>
+
           <div class="destino-footer">
-            <button class="btn btn-primary">Ver detalles</button>
+            <a href="detalle.html?id=${destino.id_destino}" 
+               class="btn btn-primary">
+              Ver detalles
+            </a>
           </div>
         </div>
       </div>
